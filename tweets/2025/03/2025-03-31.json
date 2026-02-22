@@ -1,0 +1,89 @@
+{
+  "tweets": {
+    "1906680877972594892": {
+      "id": "1906680877972594892",
+      "created_at": "2025-03-31 20:12:00 +08:00",
+      "full_text": "いよいよ明日から4月！\npolkaの新生活ももうすぐそこだ～🌻♪\n\n一時はもう高校生にはなれないかもって思ってたから\n地獄に仏、猫に小判！\n\nなんかいろいろ身に染みる感じ",
+      "screen_name": "polka_lion",
+      "favorite_count": 308,
+      "retweet_count": 16,
+      "bookmark_count": 6,
+      "quoted_status": null,
+      "quote_count": 5,
+      "reply_count": 0,
+      "views_count": 30350,
+      "media": []
+    },
+    "1906681129782153270": {
+      "id": "1906681129782153270",
+      "created_at": "2025-03-31 20:13:00 +08:00",
+      "full_text": "嬉しいけど緊張するし、緊張するけどなんかワクっとする感じ\nおへその奥がもぞもぞしてきて\n\nうーん、浮かれてるな私💛\n\nめっちゃ踊っちゃう～☀✨",
+      "screen_name": "polka_lion",
+      "favorite_count": 301,
+      "retweet_count": 18,
+      "bookmark_count": 5,
+      "quoted_status": null,
+      "quote_count": 5,
+      "reply_count": 0,
+      "views_count": 30477,
+      "media": []
+    },
+    "1906681381201248361": {
+      "id": "1906681381201248361",
+      "created_at": "2025-03-31 20:14:00 +08:00",
+      "full_text": "でも今日くらいいいよね？\n\n浮かれて踊って\n\n元気を出して💪✨\n\nいざ新しい高校に飛び込む！🌊",
+      "screen_name": "polka_lion",
+      "favorite_count": 300,
+      "retweet_count": 17,
+      "bookmark_count": 3,
+      "quoted_status": null,
+      "quote_count": 4,
+      "reply_count": 0,
+      "views_count": 30643,
+      "media": []
+    },
+    "1906681633169711221": {
+      "id": "1906681633169711221",
+      "created_at": "2025-03-31 20:15:00 +08:00",
+      "full_text": "数学が苦手なのを放置したこともちゃんと反省して今度こそは頑張るって決意したし\n\nそうだ、アルゼンチンにいるママとパパにメッセージしておかなきゃ\n\nいろいろあったけど\n\n今日もpolkaは元気で踊ってます🌻✨♪",
+      "screen_name": "polka_lion",
+      "favorite_count": 615,
+      "retweet_count": 141,
+      "bookmark_count": 72,
+      "quoted_status": null,
+      "quote_count": 91,
+      "reply_count": 18,
+      "views_count": 79525,
+      "media": []
+    }
+  },
+  "translations": {
+    "1906680877972594892": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "终于从明天开始就是四月了！\n\nPolka我也马上就要开始新生活啦~🌻♪\n\n一度以为自己可能都成不了高中生了\n\n真是绝处逢生，对牛弹琴！\n\n感觉真是深有感触呢……",
+      "comments": "地獄に仏，意思：绝处逢生；猫に小判，意思：对牛弹琴；这就是乱用成语么……用对了一个，但不是长得像就是同一个意思的啊喂！"
+    },
+    "1906681129782153270": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "虽然很开心但也很紧张，虽然很紧张但却有种兴奋感\n\n感觉肚脐深处在蠢蠢欲动\n\n嗯——，我可真是飘啊💛\n\n要狂跳舞了哟~☀✨"
+    },
+    "1906681381201248361": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "但就今天一下也没关系吧？\n\n飘飘然地跳舞\n\n打起精神💪✨\n\n接着，要跳进新的高中生活咯！🌊"
+    },
+    "1906681633169711221": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "我有好好反省自己因为不擅长数学就把它放置在一边的事，接下来我一定会努力的\n\n对了，必须得给在阿根廷的妈妈和爸爸发消息\n\n虽然发生了很多事\n\n今天的Polka我也在元气地跳着舞哦🌻✨♪"
+    }
+  },
+  "audio": [
+    "1906680877972594892",
+    "1906681129782153270",
+    "1906681381201248361",
+    "1906681633169711221"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "tweets": {
+    "1900531357174128835": {
+      "id": "1900531357174128835",
+      "created_at": "2025-03-14 20:56:00 +08:00",
+      "full_text": "どうしよう\n\n高校落ちた\n\nどうしようどうしようどうしよう",
+      "screen_name": "polka_lion",
+      "favorite_count": 2092,
+      "retweet_count": 760,
+      "bookmark_count": 253,
+      "quoted_status": null,
+      "quote_count": 344,
+      "reply_count": 46,
+      "views_count": 398634,
+      "media": []
+    },
+    "1900531608777904251": {
+      "id": "1900531608777904251",
+      "created_at": "2025-03-14 20:57:00 +08:00",
+      "full_text": "これって\n\n春から行くとこないってこと？\n\nウソでしょ。。。\n\nどうしよう\n\nああ\n\nこれって、夢じゃないよね",
+      "screen_name": "polka_lion",
+      "favorite_count": 425,
+      "retweet_count": 61,
+      "bookmark_count": 13,
+      "quoted_status": null,
+      "quote_count": 12,
+      "reply_count": 2,
+      "views_count": 34827,
+      "media": []
+    }
+  },
+  "translations": {
+    "1900531357174128835": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "怎么办啊\n\n高中落榜了\n\n怎么办怎么办怎么办"
+    },
+    "1900531608777904251": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "这样的话\n\n春天开始就没学上了的意思？\n\n开玩笑吧。。。\n\n怎么办啊\n\n啊啊\n\n这个，不是梦对吧"
+    }
+  },
+  "audio": [
+    "1900531357174128835",
+    "1900531608777904251"
+  ]
+}

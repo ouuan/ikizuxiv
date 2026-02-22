@@ -1,0 +1,28 @@
+{
+  "tweets": {
+    "1904391039701369141": {
+      "id": "1904391039701369141",
+      "created_at": "2025-03-25 12:33:00 +08:00",
+      "full_text": "ばいばい、中学校🌸\n\nそして\n\nハロー☀新しい私🌻✨\n\n私、４月からはL高校１年生になります✨✨\n\nあれ？　\n\nそういえば１年生とかっていう言い方もないんだっけ",
+      "screen_name": "polka_lion",
+      "favorite_count": 384,
+      "retweet_count": 48,
+      "bookmark_count": 8,
+      "quoted_status": null,
+      "quote_count": 18,
+      "reply_count": 0,
+      "views_count": 35521,
+      "media": []
+    }
+  },
+  "translations": {
+    "1904391039701369141": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "拜拜，初中🌸\n\n然后是\n\n哈啰☀全新的我🌻✨\n\n我，从四月开始就是L高中一年生啦✨✨\n\n啊咧？\n\n这样说来好像没用“一年生”这种说法来着？"
+    }
+  },
+  "audio": [
+    "1904391039701369141"
+  ]
+}

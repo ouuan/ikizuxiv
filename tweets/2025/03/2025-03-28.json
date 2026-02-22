@@ -1,0 +1,48 @@
+{
+  "tweets": {
+    "1905534574891074019": {
+      "id": "1905534574891074019",
+      "created_at": "2025-03-28 16:17:00 +08:00",
+      "full_text": "制服がないということは\nつまり毎日私服で学校に通うっていうことで👕\n\nやっぱり\n\n毎日ジャージはちょっとまずい💦\n\nよね？\n\nだから今日は新しい服を買いに行ったよ⛩",
+      "screen_name": "polka_lion",
+      "favorite_count": 316,
+      "retweet_count": 18,
+      "bookmark_count": 4,
+      "quoted_status": null,
+      "quote_count": 7,
+      "reply_count": 1,
+      "views_count": 30741,
+      "media": []
+    },
+    "1905535077972328455": {
+      "id": "1905535077972328455",
+      "created_at": "2025-03-28 16:19:00 +08:00",
+      "full_text": "動きやすい服が好きだから、スカートもパンツも短めが好き💛\n\n帰り道にかわいいにゃんこ🐱を見かけたから、ちょっと一緒に踊ったよ♪\nPolkaには猫の言ってることがわかる！　\n\n気がするんだ、昔から",
+      "screen_name": "polka_lion",
+      "favorite_count": 342,
+      "retweet_count": 31,
+      "bookmark_count": 8,
+      "quoted_status": null,
+      "quote_count": 13,
+      "reply_count": 1,
+      "views_count": 32632,
+      "media": []
+    }
+  },
+  "translations": {
+    "1905534574891074019": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "没有制服的意思\n\n就是每天穿着私服去上学的意思咯👕\n\n果然\n\n每天穿着运动服是有点不大行💦\n\n对吧？\n\n所以今天我就去买了一些新衣服哦⛩"
+    },
+    "1905535077972328455": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "因为我喜欢容易活动的衣服，所以裙子和裤子都喜欢偏短的💛\n\n回家的路上看到了可爱的喵🐱，就稍微一起跳了会儿舞♪\n\nPolka我可以听得懂猫在说的话！\n\n从很久以前，就发现了"
+    }
+  },
+  "audio": [
+    "1905534574891074019",
+    "1905535077972328455"
+  ]
+}
