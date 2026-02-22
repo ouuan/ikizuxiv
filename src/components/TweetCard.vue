@@ -367,8 +367,8 @@ watch(() => props.isAutoPlaying, async (newVal) => {
               size="small"
               :disabled="isAutoPlaying"
               @click="playAudio"
-              @mouseenter="prefetchAudio"
-              @focus="prefetchAudio"
+              @mouseenter="() => { prefetchAudio() }"
+              @focus="() => { prefetchAudio() }"
             >
               <template #icon>
                 <n-icon :size="16">
@@ -395,6 +395,8 @@ watch(() => props.isAutoPlaying, async (newVal) => {
               size="small"
               :disabled="isAutoPlaying"
               @click="startAutoPlay"
+              @mouseenter="() => { prefetchAudio() }"
+              @focus="() => { prefetchAudio() }"
             >
               <template #icon>
                 <n-icon :size="16">
@@ -439,6 +441,7 @@ watch(() => props.isAutoPlaying, async (newVal) => {
             v-if="hasAudio"
             ref="audioRef"
             :src="audioUrl"
+            preload="none"
             @ended="handleAudioEnded"
           />
         </div>
