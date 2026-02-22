@@ -1,6 +1,7 @@
 export interface Tweet {
   id: string;
   created_at: string;
+  date: string;
   full_text: string;
   screen_name: string;
   favorite_count: number;

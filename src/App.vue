@@ -46,6 +46,7 @@ function isValidDate(dateStr: string): boolean {
 }
 
 const dayData = ref<DayData | null>(null);
+const nextDayData = ref<DayData | null>(null);
 const loading = ref(false);
 const showSettings = ref(false);
 const showAbout = ref(false);
@@ -119,6 +120,15 @@ const nextDate = computed(() => {
   return dates.value[nextIndex] ?? null;
 });
 
+// Load next day data when nextDate changes
+watch(nextDate, async (newNextDate) => {
+  if (!newNextDate) {
+    nextDayData.value = null;
+    return;
+  }
+  nextDayData.value = await loadDayData(newNextDate);
+});
+
 const prefetchedDates = new Set<string>();
 
 const prefetchDayData = async (date: string | null) => {
@@ -153,10 +163,6 @@ const prefetchPrev = () => {
   void prefetchDayData(prevDate.value);
 };
 
-const prefetchNext = () => {
-  void prefetchDayData(nextDate.value);
-};
-
 const onDateChange = (date: string) => {
   currentDate.value = date;
 };
@@ -185,7 +191,6 @@ useHead({
         @prev="goToPrev"
         @next="goToNext"
         @prefetch-prev="prefetchPrev"
-        @prefetch-next="prefetchNext"
         @date-change="onDateChange"
         @settings="showSettings = true"
         @about="showAbout = true"
@@ -202,12 +207,12 @@ useHead({
       <main class="main-content">
         <tweet-list
           :day-data="dayData"
+          :next-day-data="nextDayData"
           :loading="loading"
           :display-mode="displayMode"
           :current-date="currentDate"
           :has-next="hasNext"
           @next="goToNext"
-          @prefetch-next="prefetchNext"
         />
       </main>
     </div>

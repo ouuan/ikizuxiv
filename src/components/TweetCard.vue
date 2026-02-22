@@ -26,7 +26,7 @@ import type {
   DisplayMode, Translation,
   Tweet,
 } from '../types';
-import { formatTime } from '../utils';
+import { formatTime, getAudioUrl } from '../utils';
 import MetricItem from './MetricItem.vue';
 import TranslatorInfo from './TranslatorInfo.vue';
 import TweetTextWithHashtags from './TweetTextWithHashtags.vue';
@@ -39,7 +39,6 @@ const props = defineProps<{
   isAutoPlaying: boolean;
   isGroupedWithPrev: boolean;
   isGroupedWithNext: boolean;
-  nextAudioUrl?: string | null;
   audioPreload?: 'none' | 'auto';
 }>();
 
@@ -57,12 +56,7 @@ const memberName = computed(() => NAME[props.tweet.screen_name] || props.tweet.s
 
 const memberColor = computed(() => COLOR[props.tweet.screen_name] || '#249fde');
 
-const audioUrl = computed(() => {
-  const date = new Date(props.tweet.created_at);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  return `/assets/audio/${year}/${month}/${props.tweet.id}.mp3`;
-});
+const audioUrl = computed(() => getAudioUrl(props.tweet));
 
 const handlePreloadAudio = () => {
   emit('preloadAudio', props.tweet.id);

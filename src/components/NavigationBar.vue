@@ -18,7 +18,6 @@ const emit = defineEmits<{
   prev: [];
   next: [];
   prefetchPrev: [];
-  prefetchNext: [];
   dateChange: [date: string];
   settings: [];
   about: [];
@@ -106,8 +105,6 @@ const isDateDisabled = (ts: number) => {
         circle
         :disabled="!hasNext"
         @click="emit('next')"
-        @mouseenter="hasNext && emit('prefetchNext')"
-        @focus="hasNext && emit('prefetchNext')"
       >
         <n-icon :size="20">
           <chevron-forward-outline />

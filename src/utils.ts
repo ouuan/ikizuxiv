@@ -1,4 +1,4 @@
-import type { DayData } from './types';
+import type { DayData, Tweet } from './types';
 
 export async function loadDates(): Promise<string[]> {
   const response = await fetch('/tweets/dates.json');
@@ -11,7 +11,11 @@ export async function loadDayData(date: string): Promise<DayData | null> {
     if (!year || !month) return null;
     const response = await fetch(`/tweets/${year}/${month}/${date}.json`);
     if (!response.ok) return null;
-    return await response.json();
+    const data: DayData = await response.json();
+    for (const tweet of Object.values(data.tweets)) {
+      tweet.date = date;
+    }
+    return data;
   } catch {
     return null;
   }
@@ -35,4 +39,10 @@ export function formatTime(dateStr: string): string {
     hour12: false,
     timeZone: 'Asia/Tokyo',
   });
+}
+
+export function getAudioUrl(tweet: Tweet): string {
+  const [year, month] = tweet.date.split('-');
+  if (!year || !month) return '';
+  return `/assets/audio/${year}/${month}/${tweet.id}.mp3`;
 }
