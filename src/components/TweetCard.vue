@@ -40,11 +40,13 @@ const props = defineProps<{
   isGroupedWithPrev: boolean;
   isGroupedWithNext: boolean;
   nextAudioUrl?: string | null;
+  audioPreload?: 'none' | 'auto';
 }>();
 
 const emit = defineEmits<{
   autoPlayStart: [tweetId: string];
   autoPlayNext: [tweetId: string];
+  preloadAudio: [tweetId: string];
 }>();
 
 const cardRef = ref<HTMLElement>();
@@ -62,17 +64,8 @@ const audioUrl = computed(() => {
   return `/assets/audio/${year}/${month}/${props.tweet.id}.mp3`;
 });
 
-const prefetchAudio = (href?: string | null) => {
-  const target = href ?? audioUrl.value;
-  if (!target) return;
-  const selector = `link[data-audio-prefetch="${target}"]`;
-  if (document.querySelector(selector)) return;
-  const link = document.createElement('link');
-  link.rel = 'prefetch';
-  link.as = 'audio';
-  link.href = target;
-  link.setAttribute('data-audio-prefetch', target);
-  document.head.appendChild(link);
+const handlePreloadAudio = () => {
+  emit('preloadAudio', props.tweet.id);
 };
 
 const avatarUrl = computed(() => {
@@ -167,8 +160,6 @@ const handleAudioEnded = () => {
 // Auto-play when prop changes
 watch(() => props.isAutoPlaying, async (newVal) => {
   if (newVal) {
-    prefetchAudio();
-    prefetchAudio(props.nextAudioUrl);
     await nextTick();
     cardRef.value?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     playAudio();
@@ -367,8 +358,8 @@ watch(() => props.isAutoPlaying, async (newVal) => {
               size="small"
               :disabled="isAutoPlaying"
               @click="playAudio"
-              @mouseenter="() => { prefetchAudio() }"
-              @focus="() => { prefetchAudio() }"
+              @mouseenter="handlePreloadAudio"
+              @focus="handlePreloadAudio"
             >
               <template #icon>
                 <n-icon :size="16">
@@ -395,8 +386,8 @@ watch(() => props.isAutoPlaying, async (newVal) => {
               size="small"
               :disabled="isAutoPlaying"
               @click="startAutoPlay"
-              @mouseenter="() => { prefetchAudio() }"
-              @focus="() => { prefetchAudio() }"
+              @mouseenter="handlePreloadAudio"
+              @focus="handlePreloadAudio"
             >
               <template #icon>
                 <n-icon :size="16">
@@ -441,7 +432,7 @@ watch(() => props.isAutoPlaying, async (newVal) => {
             v-if="hasAudio"
             ref="audioRef"
             :src="audioUrl"
-            preload="none"
+            :preload="audioPreload || 'none'"
             @ended="handleAudioEnded"
           />
         </div>

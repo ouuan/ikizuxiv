@@ -20,6 +20,7 @@ const emit = defineEmits<{
 
 const autoPlayingTweetId = ref<string | null>(null);
 const pendingAutoPlay = ref(false);
+const preloadAudioIds = ref<Set<string>>(new Set());
 const tweetsArray = computed(() => {
   if (!props.dayData?.tweets) return [];
   return Object.values(props.dayData.tweets).sort((a, b) => {
@@ -55,9 +56,18 @@ const stopAutoPlay = () => {
   autoPlayingTweetId.value = null;
 };
 
+const onPreloadAudio = (tweetId: string) => {
+  preloadAudioIds.value.add(tweetId);
+};
+
 const onAutoPlayStart = (tweetId: string) => {
   pendingAutoPlay.value = false;
   autoPlayingTweetId.value = tweetId;
+  const currentIndex = tweetsArray.value.findIndex((t) => t.id === tweetId);
+  if (currentIndex >= 0 && currentIndex < tweetsArray.value.length - 1) {
+    const nextTweet = tweetsArray.value[currentIndex + 1];
+    if (nextTweet) preloadAudioIds.value.add(nextTweet.id);
+  }
   if (props.hasNext && lastTweetId.value === tweetId) {
     emit('prefetchNext');
   }
@@ -67,7 +77,16 @@ const onAutoPlayNext = (currentId: string) => {
   const currentIndex = tweetsArray.value.findIndex((t) => t.id === currentId);
   if (currentIndex >= 0 && currentIndex < tweetsArray.value.length - 1) {
     const nextTweet = tweetsArray.value[currentIndex + 1];
-    if (nextTweet) autoPlayingTweetId.value = nextTweet.id;
+    if (nextTweet) {
+      autoPlayingTweetId.value = nextTweet.id;
+      // Enable preload for next tweet
+      preloadAudioIds.value.add(nextTweet.id);
+      // Also preload the one after next
+      if (currentIndex + 2 < tweetsArray.value.length) {
+        const nextNextTweet = tweetsArray.value[currentIndex + 2];
+        if (nextNextTweet) preloadAudioIds.value.add(nextNextTweet.id);
+      }
+    }
     if (currentIndex === tweetsArray.value.length - 2 && props.hasNext) {
       emit('prefetchNext');
     }
@@ -96,9 +115,7 @@ watch(() => props.currentDate, () => {
 watch(tweetsArray, (newTweets) => {
   if (!pendingAutoPlay.value) return;
   const firstTweet = newTweets[0];
-  if (!firstTweet) return;
-  autoPlayingTweetId.value = firstTweet.id;
-  pendingAutoPlay.value = false;
+  if (firstTweet) onAutoPlayStart(firstTweet.id);
 });
 </script>
 
@@ -127,8 +144,10 @@ watch(tweetsArray, (newTweets) => {
           :is-grouped-with-next="
             index < tweetsArray.length - 1 && isGrouped(tweet, tweetsArray[index + 1]!)
           "
+          :audio-preload="preloadAudioIds.has(tweet.id) ? 'auto' : 'none'"
           @auto-play-start="onAutoPlayStart"
           @auto-play-next="onAutoPlayNext"
+          @preload-audio="onPreloadAudio"
         />
         <n-button
           v-if="hasNext"
