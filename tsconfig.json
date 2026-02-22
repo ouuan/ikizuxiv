@@ -1,0 +1,3 @@
+{
+    "extends": "@ouuan/tsconfig-vue/tsconfig.json"
+}

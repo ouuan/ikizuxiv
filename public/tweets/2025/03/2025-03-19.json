@@ -1,0 +1,48 @@
+{
+  "tweets": {
+    "1902257229366952099": {
+      "id": "1902257229366952099",
+      "created_at": "2025-03-19 15:14:00 +08:00",
+      "full_text": "おばあちゃんに言われて学校に相談にいった\n\n先生が今からでも入れる学校はあるって！\n\nどうしようどうしよう！！　\n\nホントに！？\n\n嬉しすぎるよ☀☀✨✨✨！！！",
+      "screen_name": "polka_lion",
+      "favorite_count": 381,
+      "retweet_count": 51,
+      "bookmark_count": 4,
+      "quoted_status": null,
+      "quote_count": 12,
+      "reply_count": 0,
+      "views_count": 32700,
+      "media": []
+    },
+    "1902257480954212379": {
+      "id": "1902257480954212379",
+      "created_at": "2025-03-19 15:15:00 +08:00",
+      "full_text": "ああ\n\nもしコレが本当なら！\n\n神様、いくらどんなに数学が苦手でも⛩⛩⛩\n\nこれからはもう少し逃げずに頑張るって約束します🙏🙏🙏✨✨！！",
+      "screen_name": "polka_lion",
+      "favorite_count": 360,
+      "retweet_count": 31,
+      "bookmark_count": 3,
+      "quoted_status": null,
+      "quote_count": 7,
+      "reply_count": 1,
+      "views_count": 29782,
+      "media": []
+    }
+  },
+  "translations": {
+    "1902257229366952099": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "听了奶奶的话，去学校咨询了一下\n\n老师说还有现在也能进的学校！\n\n怎么办怎么办！！\n\n真的么？！\n\n太开心了吧☀☀✨✨✨！！！"
+    },
+    "1902257480954212379": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "啊啊\n\n如果是真的！\n\n神啊，不管我有多不擅长数学⛩⛩⛩\n\n我保证从今往后再也不逃避了，会更加努力🙏🙏🙏✨✨！！"
+    }
+  },
+  "audio": [
+    "1902257229366952099",
+    "1902257480954212379"
+  ]
+}

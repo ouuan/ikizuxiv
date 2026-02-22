@@ -1,0 +1,31 @@
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - uses: pnpm/action-setup@v3
+        with:
+          version: latest
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.13.0
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm build
+      - uses: JamesIves/github-pages-deploy-action@v4
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        with:
+          folder: dist
+          branch: dist

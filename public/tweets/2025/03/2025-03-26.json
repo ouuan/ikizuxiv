@@ -1,0 +1,68 @@
+{
+  "tweets": {
+    "1904728764782698512": {
+      "id": "1904728764782698512",
+      "created_at": "2025-03-26 10:55:00 +08:00",
+      "full_text": "新しい高校の制服が届いた🎁\n\nってみんなが言ってた\n\nあれ？\n\nそういえば、私は制服の話って全然聞いてないけど💦\n\nこのままでいいのかな？",
+      "screen_name": "polka_lion",
+      "favorite_count": 321,
+      "retweet_count": 18,
+      "bookmark_count": 3,
+      "quoted_status": null,
+      "quote_count": 4,
+      "reply_count": 1,
+      "views_count": 30032,
+      "media": []
+    },
+    "1904729016784830655": {
+      "id": "1904729016784830655",
+      "created_at": "2025-03-26 10:56:00 +08:00",
+      "full_text": "あれあれあれ？\n\nわぁ、もしかして制服ないとか⛩\n\nすごいな、L高！",
+      "screen_name": "polka_lion",
+      "favorite_count": 323,
+      "retweet_count": 32,
+      "bookmark_count": 5,
+      "quoted_status": null,
+      "quote_count": 7,
+      "reply_count": 0,
+      "views_count": 30357,
+      "media": []
+    },
+    "1904729771562394053": {
+      "id": "1904729771562394053",
+      "created_at": "2025-03-26 10:59:00 +08:00",
+      "full_text": "私、体を締め付ける服が苦手で\n\nネクタイとかすぐに苦しくなっちゃってゆるゆるにして先生からよく怒られてたから\n\nちょっといいかも💛",
+      "screen_name": "polka_lion",
+      "favorite_count": 328,
+      "retweet_count": 25,
+      "bookmark_count": 8,
+      "quoted_status": null,
+      "quote_count": 11,
+      "reply_count": 1,
+      "views_count": 32765,
+      "media": []
+    }
+  },
+  "translations": {
+    "1904728764782698512": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "大家都在说\n\n“收到新的高中制服啦🎁”\n\n啊咧？\n\n这样说来，我完全没听说过任何关于制服的话题💦\n\n就这样下去真的没事么？"
+    },
+    "1904729016784830655": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "啊咧啊咧啊咧？\n\n哇，难道是没有制服吗⛩\n\n太棒了吧，L高！"
+    },
+    "1904729771562394053": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "我啊，不喜欢紧紧绑着身体的衣服\n\n像是领带之类的很快就会让我觉得憋得慌，稍微松一点的话又经常会被老师骂\n\n这样大概也蛮不错的💛"
+    }
+  },
+  "audio": [
+    "1904728764782698512",
+    "1904729016784830655",
+    "1904729771562394053"
+  ]
+}

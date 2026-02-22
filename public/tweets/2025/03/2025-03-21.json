@@ -1,0 +1,48 @@
+{
+  "tweets": {
+    "1902919845714518083": {
+      "id": "1902919845714518083",
+      "created_at": "2025-03-21 11:07:00 +08:00",
+      "full_text": "polkaが行く予定の学校のパンフレットを見たよ\n\nなんかすごい新しい学校らしい💦\n\nネット高校??\n\nってなに",
+      "screen_name": "polka_lion",
+      "favorite_count": 397,
+      "retweet_count": 74,
+      "bookmark_count": 7,
+      "quoted_status": null,
+      "quote_count": 11,
+      "reply_count": 1,
+      "views_count": 37352,
+      "media": []
+    },
+    "1902920097355743253": {
+      "id": "1902920097355743253",
+      "created_at": "2025-03-21 11:08:00 +08:00",
+      "full_text": "うーん\nやっぱりなんかよくわからないんだけど\n\n毎日通学しなくてよくて、制服も自由で、授業は配信でいつでも見れて\n\nこれ本当かな？\n\nしかも！　数学、カリキュラムめっちゃ少ない！！\n\nこれって天国かな☀✨",
+      "screen_name": "polka_lion",
+      "favorite_count": 390,
+      "retweet_count": 47,
+      "bookmark_count": 9,
+      "quoted_status": null,
+      "quote_count": 12,
+      "reply_count": 0,
+      "views_count": 38965,
+      "media": []
+    }
+  },
+  "translations": {
+    "1902919845714518083": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "Polka我看了准备去的学校的宣传册哦\n\n好像是一所超新的学校呢💦\n\n网络高中？？\n\n是啥"
+    },
+    "1902920097355743253": {
+      "translator": "D字头列车",
+      "source": "https://www.bilibili.com/read/cv41541018",
+      "translation": "嗯……\n\n果然总觉得有点不明白啊\n\n不过不需要每天上学也可以，制服也自由，上的课也可以随时在网上看\n\n这是真的吗？\n\n而且！数学课超少诶！！\n\n这是天堂吧☀✨"
+    }
+  },
+  "audio": [
+    "1902919845714518083",
+    "1902920097355743253"
+  ]
+}
