@@ -34,15 +34,18 @@ for path in tweets_root.glob('*/*/*.json'):
                 while not translation.endswith('\n\n'):
                     translation += '\n' + input().strip()
                 translation = translation.strip()
-                comments = input('Comments (optional, end with two blank lines): ')
-                while not comments.endswith('\n\n'):
-                    comments += '\n' + input().strip()
-                comments = comments.strip()
+                annotations = {}
+                while True:
+                    term = input('Annotation Term (optional): ').strip()
+                    if not term:
+                        break
+                    definition = input('Annotation Definition: ').strip()
+                    annotations[term] = definition
                 print(f'{"-" * 35} Original {"-" * 35}\n{tweet["full_text"]}')
                 print(f'{"-" * 34} Translation {"-" * 33}\n{translation}')
-                if comments:
-                    print(f'{"-" * 35} Comments {"-" * 35}\n{comments}')
                 print('-' * 80)
+                for term, definition in annotations.items():
+                    print(f'Annotation: {term} - {definition}')
                 print(f'Translator: {translator}')
                 print(f'Source Link: {source}')
                 print('-' * 80)
@@ -54,9 +57,8 @@ for path in tweets_root.glob('*/*/*.json'):
                         'translator': translator,
                         'source': source,
                         'translation': translation,
+                        'annotations': annotations,
                     }
-                    if comments:
-                        translations[id]['comments'] = comments
                     break
     with open(path, 'w') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)

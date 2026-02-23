@@ -5,12 +5,11 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from sys import argv
 
-if len(argv) != 2:
-    print("Usage: python import_tweets.py <tweets.json>")
-    exit(1)
+tweets = []
 
-with open(argv[1], 'r') as f:
-    tweets = json.load(f)
+for source in argv[1:]:
+    with open(source, 'r') as f:
+        tweets += json.load(f)
 
 public_root = Path(__file__).parent.parent / 'public'
 tweets_root = public_root / 'tweets'
