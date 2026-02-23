@@ -137,6 +137,7 @@ watch(tweetsArray, (newTweets) => {
           :key="tweet.id"
           :tweet="tweet"
           :translation="dayData.translations?.[tweet.id]"
+          :labels="dayData.labels?.[tweet.id]"
           :has-audio="dayData.audio?.includes(tweet.id) || false"
           :display-mode="displayMode"
           :is-auto-playing="autoPlayingTweetId === tweet.id"

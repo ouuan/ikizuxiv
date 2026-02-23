@@ -20,7 +20,9 @@ import {
   computed, nextTick,
   ref, watch,
 } from 'vue';
-import { COLOR, NAME } from '../constants';
+import {
+  COLOR, MEMBER_SUFFIX, NAMES, NOT_MEMBER_LABEL, RELEASE_DATE,
+} from '../constants';
 import { trackEvent } from '../track';
 import type {
   DisplayMode, Translation,
@@ -34,6 +36,7 @@ import TweetText from './TweetText.vue';
 const props = defineProps<{
   tweet: Tweet;
   translation?: Translation;
+  labels?: string[];
   hasAudio: boolean;
   displayMode: DisplayMode;
   isAutoPlaying: boolean;
@@ -52,7 +55,13 @@ const cardRef = ref<HTMLElement>();
 const audioRef = ref<HTMLAudioElement>();
 const isPlaying = ref(false);
 
-const memberName = computed(() => NAME[props.tweet.screen_name] || props.tweet.screen_name);
+const memberName = computed(() => {
+  const names = NAMES[props.tweet.screen_name];
+  if (!names) return props.tweet.screen_name;
+  if (new Date(props.tweet.created_at) < RELEASE_DATE) return names.old;
+  if (props.labels?.includes(NOT_MEMBER_LABEL)) return names.new;
+  return names.new + MEMBER_SUFFIX;
+});
 
 const memberColor = computed(() => COLOR[props.tweet.screen_name] || '#249fde');
 
@@ -63,7 +72,9 @@ const handlePreloadAudio = () => {
 };
 
 const avatarUrl = computed(() => {
-  return `/assets/avatar/${props.tweet.screen_name}.png`;
+  if (new Date(props.tweet.created_at) < RELEASE_DATE)
+    return `/assets/avatar/old/${props.tweet.screen_name}.webp`;
+  return `/assets/avatar/new/${props.tweet.screen_name}.png`;
 });
 
 const profileUrl = computed(() => {

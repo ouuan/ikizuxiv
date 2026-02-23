@@ -7,64 +7,85 @@ export const URL = `https://${DOMAIN}`;
 interface MemberInfo {
   username: string;
   name: string;
+  oldname: string;
   color: string;
 }
+
+export const RELEASE_DATE = new Date('2025-05-12');
+export const MEMBER_SUFFIX = '@いきづらい部！';
+export const NOT_MEMBER_LABEL = '入部前';
 
 export const MEMBERS: MemberInfo[] = [
   {
     username: 'polka_lion',
-    name: '高橋ポルカ@いきづらい部！',
+    name: '高橋ポルカ',
+    oldname: 'Polka',
     color: '#ccb12e',
   },
   {
     username: 'My_Mai_Eld',
-    name: '麻布麻衣@いきづらい部！',
+    name: '麻布麻衣',
+    oldname: 'mai',
     color: '#009fdf',
   },
   {
     username: 'G_Akky304250',
-    name: '五桐 玲@いきづらい部！',
+    name: '五桐 玲',
+    oldname: 'Akira',
     color: '#88d66e',
   },
   {
     username: 'hanabistarmine',
-    name: '駒形花火@いきづらい部！',
+    name: '駒形花火',
+    oldname: '🎆',
     color: '#ff2021',
   },
   {
     username: 'MiracleGoldSP',
-    name: '金澤奇跡@いきづらい部！',
+    name: '金澤奇跡',
+    oldname: 'Miracle',
     color: '#ffb7f1',
   },
   {
     username: 'Noricco_U',
-    name: '調布のりこ@いきづらい部！',
+    name: '調布のりこ',
+    oldname: 'のりこ',
     color: '#ae62ff',
   },
   {
     username: 'Yukuri_talk',
-    name: '春宮ゆくり@いきづらい部！',
+    name: '春宮ゆくり',
+    oldname: 'Yukuri',
     color: '#5ecbd1',
   },
   {
     username: 'Rollie_twinkle',
-    name: '此花輝夜@いきづらい部！',
+    name: '此花輝夜',
+    oldname: 'Rollie',
     color: '#fd589e',
   },
   {
     username: 'LittlegreenCom',
-    name: '山田真緑@いきづらい部！',
+    name: '山田真緑',
+    oldname: 'Little🌵🌳green',
     color: '#16b500',
   },
   {
     username: 'ShaunTheBunny',
-    name: '佐々木翔音@いきづらい部！',
+    name: '佐々木翔音',
+    oldname: 'shion',
     color: '#9b9b9b',
   },
 ];
 
-export const NAME = MEMBERS.reduce<Record<string, string>>((acc, member) => {
-  acc[member.username] = member.name;
+export const NAMES = MEMBERS.reduce<Record<string, {
+  old: string;
+  new: string;
+}>>((acc, member) => {
+  acc[member.username] = {
+    old: member.oldname,
+    new: member.name,
+  };
   return acc;
 }, {});
 

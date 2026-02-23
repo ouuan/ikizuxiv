@@ -30,6 +30,7 @@ export type Translation = TranslationSource & {
 export interface DayData {
   tweets: Record<string, Tweet>;
   translations?: Record<string, Translation>;
+  labels?: Record<string, string[]>;
   audio?: string[];
 }
 
