@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useEventListener } from '@vueuse/core';
 import { NButton, NEmpty, NSpin } from 'naive-ui';
 import { computed, ref, watch } from 'vue';
 import type { DayData, DisplayMode, Tweet } from '../types';
@@ -100,13 +99,6 @@ const onAutoPlayNext = (currentId: string) => {
   }
 };
 
-// Stop auto-play on click - using VueUse's useEventListener
-useEventListener(window, 'click', () => {
-  if (autoPlayingTweetId.value) {
-    stopAutoPlay();
-  }
-});
-
 // Reset auto-play when date changes
 watch(() => props.currentDate, () => {
   if (!pendingAutoPlay.value) {
@@ -150,6 +142,7 @@ watch(tweetsArray, (newTweets) => {
           :audio-preload="preloadAudioIds.has(tweet.id) ? 'auto' : 'none'"
           @auto-play-start="onAutoPlayStart"
           @auto-play-next="onAutoPlayNext"
+          @auto-play-stop="stopAutoPlay"
           @preload-audio="onPreloadAudio"
         />
         <n-button

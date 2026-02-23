@@ -48,6 +48,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   autoPlayStart: [tweetId: string];
   autoPlayNext: [tweetId: string];
+  autoPlayStop: [];
   preloadAudio: [tweetId: string];
 }>();
 
@@ -128,6 +129,7 @@ const isHorizontalLayout = computed(() => {
 
 const playAudio = (e?: MouseEvent) => {
   if (!audioRef.value) return;
+  if (e) emit('autoPlayStop');
   void audioRef.value.play();
   isPlaying.value = true;
   const eventName = e ? 'Manual Play' : 'Auto Play';
@@ -145,6 +147,7 @@ const stopAudio = () => {
   audioRef.value.pause();
   audioRef.value.currentTime = 0;
   isPlaying.value = false;
+  emit('autoPlayStop');
 };
 
 const startAutoPlay = (e?: Event) => {
