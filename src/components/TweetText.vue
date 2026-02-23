@@ -83,7 +83,10 @@ const parts = computed(() => {
         v-else-if="part.type === 'hashtag'"
         class="hashtag-link"
       >{{ part.content }}</span>
-      <n-tooltip v-else-if="part.type === 'annotation'">
+      <n-tooltip
+        v-else-if="part.type === 'annotation'"
+        style="max-width: min(calc(90vw - 50px), 400px);"
+      >
         <template #trigger>
           <span class="annotation">{{ part.content }}</span>
         </template>
