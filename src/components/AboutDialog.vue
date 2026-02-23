@@ -3,7 +3,6 @@ import {
   NA,
   NBlockquote,
   NH4,
-  NH5,
   NLi,
   NModal,
   NP,
@@ -40,6 +39,11 @@ const showDialog = defineModel<boolean>({ required: true });
       <n-p>
         数据为手动更新，非实时最新数据
       </n-p>
+      <n-p>
+        翻译主要来自<n-a href="https://pikapaca.github.io/IkizulivetwiZH/">
+          <span>羊驼</span>
+        </n-a>（已获得转载授权；做出来之后才发现对方也做了网站，经商议，我们均保留各自的网站）
+      </n-p>
       <n-h4>
         为什么要做这个网站？
       </n-h4>
@@ -54,15 +58,15 @@ const showDialog = defineModel<boolean>({ required: true });
           <n-li>
             有配音和自动播放还可以录制成视频
           </n-li>
+          <n-li>
+            不需要那么多理由！
+            <n-blockquote>
+              これはどうだ？そんなのムリ！<br>
+              否定はカンタン<br>
+              気にするなよ 気にしないで動けばいいよ<br>
+            </n-blockquote>
+          </n-li>
         </n-ul>
-      </n-p>
-      <n-h5>所以你真的觉得做这个网站有用/值得吗？</n-h5>
-      <n-p>
-        <n-blockquote>
-          これはどうだ？そんなのムリ！<br>
-          否定はカンタン<br>
-          気にするなよ 気にしないで動けばいいよ<br>
-        </n-blockquote>
       </n-p>
       <n-p>
         <n-text depth="2">
