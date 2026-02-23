@@ -10,7 +10,7 @@ TOKYO_TZ = timezone(timedelta(hours=9))
 translator = 'D字头列车'
 source = None
 
-for path in tweets_root.glob('*/*/*.json'):
+for path in sorted(tweets_root.glob('*/*/*.json')):
     with open(path) as f:
         data = json.load(f)
     translations = data.setdefault('translations', {})

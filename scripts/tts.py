@@ -22,7 +22,7 @@ with open(Path(__file__).parent / 'replacement.json') as f:
 
 last_sender = None
 
-for path in tweets_root.glob('*/*/*.json'):
+for path in sorted(tweets_root.glob('*/*/*.json')):
     with open(path) as f:
         data = json.load(f)
     audio = data.setdefault('audio', [])
