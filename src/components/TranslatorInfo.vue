@@ -1,26 +1,23 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import type { Translation } from '../types';
 
-defineProps<{
+const props = defineProps<{
   translation: Translation;
 }>();
+
+const translator = computed(() => props.translation.pikapaca ? '羊驼' : props.translation.translator);
+const source = computed(() => props.translation.pikapaca ? 'https://pikapaca.github.io/IkizulivetwiZH/' : props.translation.source);
 </script>
 
 <template>
   <div>
-    <div
-      v-if="translation.comments"
-      class="translation-comments"
-    >
-      {{ translation.comments }}
-    </div>
     <div class="translator-info">
       翻译来自：<a
-        :href="translation.source"
+        :href="source"
         target="_blank"
         rel="noopener noreferrer"
-      >{{
-        translation.translator }}</a>
+      >{{ translator }}</a>
     </div>
   </div>
 </template>

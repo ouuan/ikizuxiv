@@ -14,12 +14,18 @@ export interface Tweet {
   media: string[];
 }
 
-export interface Translation {
+export type TranslationSource = {
+  pikapaca: true;
+} | {
+  pikapaca?: false;
   translator: string;
   source: string;
+};
+
+export type Translation = TranslationSource & {
   translation: string;
-  comments?: string;
-}
+  annotations: Record<string, string>;
+};
 
 export interface DayData {
   tweets: Record<string, Tweet>;

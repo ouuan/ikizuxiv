@@ -29,7 +29,7 @@ import type {
 import { formatTime, getAudioUrl } from '../utils';
 import MetricItem from './MetricItem.vue';
 import TranslatorInfo from './TranslatorInfo.vue';
-import TweetTextWithHashtags from './TweetTextWithHashtags.vue';
+import TweetText from './TweetText.vue';
 
 const props = defineProps<{
   tweet: Tweet;
@@ -241,17 +241,17 @@ watch(() => props.isAutoPlaying, async (newVal) => {
             :style="{ flexDirection }"
           >
             <div class="text-block japanese-text">
-              <tweet-text-with-hashtags
+              <tweet-text
                 :text="tweet.full_text"
                 lang="ja"
               />
             </div>
             <div class="text-separator" />
             <div class="text-block chinese-text">
-              <tweet-text-with-hashtags
+              <tweet-text
                 :text="translation!.translation"
                 lang="zh-CN"
-                special-hashtag-link="#いきづらい部"
+                :annotations="translation!.annotations"
               />
               <translator-info :translation="translation!" />
             </div>
@@ -264,7 +264,7 @@ watch(() => props.isAutoPlaying, async (newVal) => {
             :style="{ flexDirection }"
           >
             <div class="text-block japanese-text">
-              <tweet-text-with-hashtags
+              <tweet-text
                 :text="tweet.full_text"
                 lang="ja"
               />
@@ -282,7 +282,7 @@ watch(() => props.isAutoPlaying, async (newVal) => {
             class="text-content"
           >
             <div class="text-block">
-              <tweet-text-with-hashtags
+              <tweet-text
                 :text="tweet.full_text"
                 lang="ja"
               />
@@ -294,10 +294,10 @@ watch(() => props.isAutoPlaying, async (newVal) => {
             class="text-content"
           >
             <div class="text-block">
-              <tweet-text-with-hashtags
+              <tweet-text
                 :text="translation!.translation"
                 lang="zh-CN"
-                special-hashtag-link="#いきづらい部"
+                :annotations="translation!.annotations"
               />
               <translator-info :translation="translation!" />
             </div>
