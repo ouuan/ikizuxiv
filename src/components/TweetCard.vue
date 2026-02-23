@@ -54,6 +54,7 @@ const emit = defineEmits<{
 const cardRef = ref<HTMLElement>();
 const audioRef = ref<HTMLAudioElement>();
 const isPlaying = ref(false);
+const showAnnotations = ref<boolean>();
 
 const memberName = computed(() => {
   const names = NAMES[props.tweet.screen_name];
@@ -155,10 +156,27 @@ const startAutoPlay = (e?: Event) => {
 const handleAudioEnded = () => {
   isPlaying.value = false;
   if (props.isAutoPlaying) {
-    const delay = props.isGroupedWithNext ? 300 : 1000;
-    setTimeout(() => {
-      emit('autoPlayNext', props.tweet.id);
-    }, delay);
+    // Check if there are annotations to display
+    const annotations = Object.values(props.translation?.annotations ?? {});
+
+    if (annotations.length > 0) {
+      showAnnotations.value = true;
+
+      const totalAnnotationLength = annotations.reduce((sum, text) => sum + text.length, 0);
+      const displayDuration = totalAnnotationLength * 100 + 1000;
+
+      setTimeout(() => {
+        showAnnotations.value = false;
+        emit('autoPlayNext', props.tweet.id);
+        void nextTick(() => showAnnotations.value = undefined);
+      }, displayDuration);
+    } else {
+      // No annotations, proceed to next tweet immediately
+      const delay = props.isGroupedWithNext ? 300 : 1000;
+      setTimeout(() => {
+        emit('autoPlayNext', props.tweet.id);
+      }, delay);
+    }
   }
 };
 
@@ -263,6 +281,7 @@ watch(() => props.isAutoPlaying, async (newVal) => {
                 :text="translation!.translation"
                 lang="zh-CN"
                 :annotations="translation!.annotations"
+                :show-annotations="showAnnotations"
               />
               <translator-info :translation="translation!" />
             </div>
@@ -309,6 +328,7 @@ watch(() => props.isAutoPlaying, async (newVal) => {
                 :text="translation!.translation"
                 lang="zh-CN"
                 :annotations="translation!.annotations"
+                :show-annotations="showAnnotations"
               />
               <translator-info :translation="translation!" />
             </div>

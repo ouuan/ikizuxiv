@@ -6,6 +6,7 @@ const props = defineProps<{
   text: string;
   lang: 'ja' | 'zh-CN';
   annotations?: Record<string, string>;
+  showAnnotations?: boolean;
 }>();
 
 interface TextPart {
@@ -86,6 +87,7 @@ const parts = computed(() => {
       <n-tooltip
         v-else-if="part.type === 'annotation'"
         style="max-width: min(calc(90vw - 50px), 400px);"
+        :show="props.showAnnotations"
       >
         <template #trigger>
           <span class="annotation">{{ part.content }}</span>
