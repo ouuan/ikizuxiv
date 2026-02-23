@@ -5,13 +5,13 @@
       "created_at": "2025-05-20 15:48:00 +08:00",
       "full_text": "声優を目指すからにはアニメをいっぱい見よう！\nと思って周りの人におすすめのアニメを聞きました🐱✨\n\n私は声優志望なんだけどコナンとか鬼滅の刃とか\nわりと有名なのしか見てなくて💦",
       "screen_name": "Noricco_U",
-      "favorite_count": 3444,
-      "retweet_count": 783,
-      "bookmark_count": 136,
+      "favorite_count": 3442,
+      "retweet_count": 782,
+      "bookmark_count": 135,
       "quoted_status": null,
       "quote_count": 338,
       "reply_count": 235,
-      "views_count": 397433,
+      "views_count": 397463,
       "media": []
     },
     "1924734084565160326": {
@@ -20,12 +20,12 @@
       "full_text": "奇跡ちゃんからは飯テロアニメがいっぱいあるって教えてもらいました🐱✨\n飯テロアニメ！？\nやっぱりポニョとかジブリ飯とかそういう…\n\nと思ったら異世界料理だった…🍖\n意外💦",
       "screen_name": "Noricco_U",
       "favorite_count": 1627,
-      "retweet_count": 316,
-      "bookmark_count": 18,
+      "retweet_count": 315,
+      "bookmark_count": 19,
       "quoted_status": null,
       "quote_count": 39,
       "reply_count": 27,
-      "views_count": 109321,
+      "views_count": 109347,
       "media": []
     },
     "1924773850790662282": {
@@ -33,13 +33,13 @@
       "created_at": "2025-05-20 18:27:01 +08:00",
       "full_text": "うわ～✨✨\nすっごくかわいい！！\nあの子の動画！\nなんだか見てるこっちまで笑顔になっちゃうね🥰✨",
       "screen_name": "Yukuri_talk",
-      "favorite_count": 1140,
+      "favorite_count": 1141,
       "retweet_count": 158,
       "bookmark_count": 11,
       "quoted_status": null,
       "quote_count": 9,
       "reply_count": 6,
-      "views_count": 64793,
+      "views_count": 64830,
       "media": []
     },
     "1924774098699485251": {
@@ -47,13 +47,13 @@
       "created_at": "2025-05-20 18:28:00 +08:00",
       "full_text": "それにしてもすごいな\nまだ高校入学したばっかりなのに、もうこんな活動を始めてるなんて",
       "screen_name": "Yukuri_talk",
-      "favorite_count": 1151,
-      "retweet_count": 130,
+      "favorite_count": 1152,
+      "retweet_count": 131,
       "bookmark_count": 9,
       "quoted_status": null,
       "quote_count": 4,
       "reply_count": 1,
-      "views_count": 69190,
+      "views_count": 69225,
       "media": []
     },
     "1924774350454194273": {
@@ -67,7 +67,7 @@
       "quoted_status": null,
       "quote_count": 10,
       "reply_count": 0,
-      "views_count": 59896,
+      "views_count": 59932,
       "media": []
     },
     "1924776866696880366": {
@@ -81,8 +81,63 @@
       "quoted_status": null,
       "quote_count": 16,
       "reply_count": 3,
-      "views_count": 56264,
+      "views_count": 56297,
       "media": []
     }
+  },
+  "translations": {
+    "1924733833175339081": {
+      "pikapaca": true,
+      "translation": "既然目标是成为声优，那就要看很多动画！\n这样想着，就问了周围的人有没有什么推荐的🐱✨\n\n虽然我的志向是成为声优啦，但是只看过像【柯南】以及【鬼灭之刃】这种\n比较有名的而已💦",
+      "annotations": {}
+    },
+    "1924734084565160326": {
+      "pikapaca": true,
+      "translation": "奇迹酱告诉我，“有许多下饭动画哦 ”🐱✨ \n下饭动画？！ \n果然是悬崖上的金鱼姬这种吉卜力饭类的吧…… \n\n这样想着，却发现是异世界料理的……🍖 \n意外💦",
+      "annotations": {
+        "下饭动画": "原文“飯テロアニメ”，特指有很多实物描写，使人食欲大开的动画",
+        "吉卜力饭": "在吉卜力动画中出现的，看上去很好吃的饭"
+      }
+    },
+    "1924773850790662282": {
+      "pikapaca": true,
+      "translation": "呜哇～✨✨\n超可爱的！！\n那孩子的视频！\n不知道为什么，只是看着就连我这里都露出笑容了呢🥰✨",
+      "annotations": {}
+    },
+    "1924774098699485251": {
+      "pikapaca": true,
+      "translation": "这样说来，真的好厉害啊\n明明高中入学还没多久呢，就已经开始这样的活动了",
+      "annotations": {}
+    },
+    "1924774350454194273": {
+      "pikapaca": true,
+      "translation": "仔细一看，舞也跳得很好呢～🩰✨\n看起来跳得很简单的样子，但实际上是轻松地跳出了相当复杂的舞步了吧……\n好利落好厉害！！\n看起来也不是芭蕾之类的，有些独特的感觉？\n有点在意她是在哪里学的呢🥰",
+      "annotations": {}
+    },
+    "1924776866696880366": {
+      "pikapaca": true,
+      "translation": "毕竟美好的事物总是能使我的内心更坚定呢……💝✨",
+      "annotations": {}
+    }
+  },
+  "labels": {
+    "1924733833175339081": [
+      "入部前"
+    ],
+    "1924734084565160326": [
+      "入部前"
+    ],
+    "1924773850790662282": [
+      "入部前"
+    ],
+    "1924774098699485251": [
+      "入部前"
+    ],
+    "1924774350454194273": [
+      "入部前"
+    ],
+    "1924776866696880366": [
+      "入部前"
+    ]
   }
 }

@@ -5,24 +5,29 @@
       "created_at": "2025-04-02 12:41:00 +08:00",
       "full_text": "最後の診察が終わった\n\nホッとした気持ちと少しの虚しさと\nもうここに通うこともないと思うとどこか少し寂しい気持ちとーー\n\nでも取り返しがつかないことを嘆くことはしないってもう決めてるから\n明日は日比谷で久しぶりの観劇🩰👏\n全力で楽しみます💖🥰",
       "screen_name": "Yukuri_talk",
-      "favorite_count": 504,
+      "favorite_count": 507,
       "retweet_count": 154,
       "bookmark_count": 45,
       "quoted_status": null,
       "quote_count": 33,
       "reply_count": 5,
-      "views_count": 48267,
+      "views_count": 48329,
       "media": []
-    }
-  },
-  "translations": {
-    "1907292155439464920": {
-      "translator": "D字头列车",
-      "source": "https://www.bilibili.com/read/cv41542387",
-      "translation": "最后的诊察结束了\n\n松了一口气的同时还感觉有一点点空虚\n\n想到之后已经不会再来这里了就感觉有些寂寞——\n\n但是我已经决定了，再也不会为了无法挽回的事而叹息\n\n明天要久违地去日比谷看剧啦🩰👏\n\n我会全力享受的💖🥰"
     }
   },
   "audio": [
     "1907292155439464920"
-  ]
+  ],
+  "translations": {
+    "1907292155439464920": {
+      "pikapaca": true,
+      "translation": "最后的诊察结束了 \n\n松了一口气的同时还感觉有一点点空虚 \n想到之后已经不会再来这里了就感觉有些寂寞——\n\n但是我已经决定了，再也不会为了无法挽回的事而叹息 \n明天要久违地去日比谷看剧啦🩰👏 \n我会全力享受的💖🥰",
+      "annotations": {}
+    }
+  },
+  "labels": {
+    "1907292155439464920": [
+      "入部前"
+    ]
+  }
 }

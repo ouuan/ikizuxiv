@@ -5,13 +5,13 @@
       "created_at": "2025-04-24 15:11:00 +08:00",
       "full_text": "ちょっとなにこれ、どういうこと！？！？！？\n不法侵入…\nっていうか、なんであの子の行く先々でこんな開けゴマみたいにドアが開くの！？🚪💦",
       "screen_name": "My_Mai_Eld",
-      "favorite_count": 287,
+      "favorite_count": 288,
       "retweet_count": 33,
       "bookmark_count": 9,
       "quoted_status": null,
       "quote_count": 5,
       "reply_count": 0,
-      "views_count": 35457,
+      "views_count": 35482,
       "media": []
     },
     "1915302689103118564": {
@@ -19,13 +19,13 @@
       "created_at": "2025-04-24 15:12:00 +08:00",
       "full_text": "運がいいってこういうこと？\n怖い💩",
       "screen_name": "My_Mai_Eld",
-      "favorite_count": 327,
+      "favorite_count": 328,
       "retweet_count": 87,
       "bookmark_count": 13,
       "quoted_status": null,
       "quote_count": 29,
       "reply_count": 0,
-      "views_count": 51817,
+      "views_count": 51853,
       "media": []
     },
     "1915375671007658021": {
@@ -33,14 +33,44 @@
       "created_at": "2025-04-24 20:02:00 +08:00",
       "full_text": "今日のトレーニング💪\n・デッドリフト\n・ランジ\n・ワイドスクワット\n・ブルガリアンスクワット\n・カーフレイズ\n動揺すると下半身強化に行きたくなるのって\n良くない癖かもしれない\nサイドレイズもしておこうかな…🚵",
       "screen_name": "G_Akky304250",
-      "favorite_count": 484,
+      "favorite_count": 485,
       "retweet_count": 93,
       "bookmark_count": 19,
       "quoted_status": null,
       "quote_count": 44,
       "reply_count": 3,
-      "views_count": 92050,
+      "views_count": 92068,
       "media": []
     }
+  },
+  "translations": {
+    "1915302437633790162": {
+      "pikapaca": true,
+      "translation": "等……这咋回事，什么情况？！？！？！\n不法侵入…\n不对，话说回来，为什么那家伙走到哪儿哪儿的门就像芝麻开门一样打开了啊？！🚪💦",
+      "annotations": {}
+    },
+    "1915302689103118564": {
+      "pikapaca": true,
+      "translation": "“运气很好”就是指这种？\n好可怕💩",
+      "annotations": {}
+    },
+    "1915375671007658021": {
+      "pikapaca": true,
+      "translation": "今日训练💪\n・硬拉\n・箭步蹲\n・宽距深蹲\n・保加利亚深蹲\n・提踵\n一紧张就会想去练下半身这点\n可能是个不大好的习惯\n要不要再加练一些侧平举呢……🚵",
+      "annotations": {}
+    }
+  },
+  "labels": {
+    "1915302437633790162": [
+      "入部前",
+      "LL前作相关"
+    ],
+    "1915302689103118564": [
+      "入部前",
+      "LL前作相关"
+    ],
+    "1915375671007658021": [
+      "入部前"
+    ]
   }
 }

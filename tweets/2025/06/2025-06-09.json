@@ -11,7 +11,7 @@
       "quoted_status": null,
       "quote_count": 5,
       "reply_count": 4,
-      "views_count": 47451,
+      "views_count": 47476,
       "media": []
     },
     "1932043751154737613": {
@@ -19,13 +19,13 @@
       "created_at": "2025-06-09 19:55:00 +08:00",
       "full_text": "L高にスクールアイドルなんていう部活があること\nミィも全然知らなかったよ～🍩🧁\nこうなったらミィもお料理部とか立ち上げてみるかな？\n\nうーん🍵\nやめやめ！\nやっぱミラクルにはそんな時間は全然ないんだな～！！🍪🎂🍩",
       "screen_name": "MiracleGoldSP",
-      "favorite_count": 1069,
+      "favorite_count": 1070,
       "retweet_count": 146,
       "bookmark_count": 10,
       "quoted_status": null,
       "quote_count": 6,
       "reply_count": 3,
-      "views_count": 50809,
+      "views_count": 50833,
       "media": []
     },
     "1932046818856374342": {
@@ -39,7 +39,7 @@
       "quoted_status": null,
       "quote_count": 20,
       "reply_count": 3,
-      "views_count": 45990,
+      "views_count": 46020,
       "media": []
     },
     "1932046974892777533": {
@@ -53,7 +53,7 @@
       "quoted_status": null,
       "quote_count": 7,
       "reply_count": 1,
-      "views_count": 41754,
+      "views_count": 41774,
       "media": []
     },
     "1932047526783258921": {
@@ -67,7 +67,7 @@
       "quoted_status": null,
       "quote_count": 12,
       "reply_count": 2,
-      "views_count": 58816,
+      "views_count": 58838,
       "media": []
     },
     "1932048581449625626": {
@@ -81,7 +81,7 @@
       "quoted_status": "1932048177525649567",
       "quote_count": 28,
       "reply_count": 4,
-      "views_count": 98238,
+      "views_count": 98272,
       "media": []
     },
     "1932049288357433713": {
@@ -95,8 +95,44 @@
       "quoted_status": null,
       "quote_count": 53,
       "reply_count": 9,
-      "views_count": 96429,
+      "views_count": 96463,
       "media": []
     }
+  },
+  "translations": {
+    "1932046818856374342": {
+      "pikapaca": true,
+      "translation": "晚上好\n总而言之我是被大阪分校味道十足的成员震惊了的副部长maimai🐌\n不愧是御好烧的国度\n虽说我也很喜欢章鱼烧，但要说的话我更喜欢明石烧\n这样说的话可以么",
+      "annotations": {}
+    },
+    "1932046974892777533": {
+      "pikapaca": true,
+      "translation": "成员变多了，而且居然是远距离的\n从今往后究竟要怎么做才好呢大家试着考虑了一下💻",
+      "annotations": {}
+    },
+    "1932047526783258921": {
+      "pikapaca": true,
+      "translation": "但结果到最后大家都还对“学园偶像究竟该做什么完全不了解\n“那么就把这种迷茫也发布出去，大家一起亲手打造学园偶像的活动不是也很好么？”\n波尔卡跳着舞说到……",
+      "annotations": {}
+    },
+    "1932048581449625626": {
+      "pikapaca": true,
+      "translation": "已经完全把征集点子的事丢给大家了……不是\n是想要向大家征求一些“要做什么比较好？”的建议💻\n首先本次是标签大募集！\n据萝拉说这是网上定番企划的样子，所以如果大家参加的话我们会很高兴的",
+      "annotations": {}
+    },
+    "1932049288357433713": {
+      "pikapaca": true,
+      "translation": "参加这次企划的话，我觉得萝拉会献上拥抱和香吻的哟\n是萝拉哦💻\n\n不知为何，稍微想起了某天那所学校的老师说过的话\n“学园偶像的话，本就没有定好的规则，所以想做什么都可以哟。”",
+      "annotations": {}
+    }
+  },
+  "labels": {
+    "1932046818856374342": [],
+    "1932046974892777533": [],
+    "1932047526783258921": [],
+    "1932048581449625626": [],
+    "1932049288357433713": [
+      "LL前作相关"
+    ]
   }
 }
