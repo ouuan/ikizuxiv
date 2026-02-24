@@ -31,7 +31,7 @@ for source in argv[1:]:
         for tweet in tweets.values():
             if datetime.fromisoformat(tweet['created_at']).astimezone(TIMEZONE).strftime(FORMAT) != source_item['date']:
                 continue
-            if original[0] != tweet['full_text'][0] or original[-1] != tweet['full_text'].replace('#いきづらい部', '').strip()[-1]:
+            if original[:3] != tweet['full_text'][:3]:
                 continue
             id = tweet['id']
             annotations = {}
