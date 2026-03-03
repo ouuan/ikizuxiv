@@ -16,7 +16,7 @@ const showImage = ref(false);
 
 <template>
   <n-tooltip
-    style="max-width: min(calc(90vw - 60px), 400px);"
+    style="max-width: min(calc(200vw / 3 + 15px), 400px);"
     :show="showImage || props.showAnnotations"
   >
     <template #trigger>
