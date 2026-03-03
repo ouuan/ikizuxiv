@@ -122,7 +122,14 @@
     "1939961170107982059": {
       "pikapaca": true,
       "translation": "哒、哒、哒哒哒里有五个哒\n所以说是五连打这我懂🌻 \n\n但是这不是五拍。。。\n为什么？！！\n\n我这样说着跳起来的时候，Yukki放了一首五拍子的歌 \n原来如此是不一样啊！！ \n就这样明白了🥰 \n\n不愧是Yukki⛩️",
-      "annotations": {}
+      "annotations": {
+        "五连打": {
+          "text": "五つ打ち，特指下图所示的节奏型，偶尔也被称为Jersey club",
+          "images": [
+            "jersey-club.png"
+          ]
+        }
+      }
     },
     "1939961928451072432": {
       "pikapaca": true,

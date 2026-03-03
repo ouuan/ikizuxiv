@@ -100,9 +100,15 @@
       "pikapaca": true,
       "translation": "我的目标是解决环境问题🌵🌳\n所以我瞄准的是环境省的3R活动！！！\n大家知道吗？温柔对待地球的三个R分别是：Reuse，Reduce，Recycle🌎\n洗发水推荐使用能够补充替换的容器！这种……要不把它唱出来试试呢？",
       "annotations": {
-        "Reuse": "重复利用",
-        "Reduce": "减少废弃",
-        "Recycle": "资源回收"
+        "Reuse": {
+          "text": "重复利用"
+        },
+        "Reduce": {
+          "text": "减少废弃"
+        },
+        "Recycle": {
+          "text": "资源回收"
+        }
       }
     },
     "1933481473807692089": {

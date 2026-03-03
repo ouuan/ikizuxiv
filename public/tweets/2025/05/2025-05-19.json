@@ -133,14 +133,18 @@
       "pikapaca": true,
       "translation": "诶……\n那个也没了？！\n\nDamn💻",
       "annotations": {
-        "Damn": "意思：可恶"
+        "Damn": {
+          "text": "意思：可恶"
+        }
       }
     },
     "1924313563751207009": {
       "pikapaca": true,
       "translation": "惊呆了…… \n幸运真是可怕 \n我感觉这绝对会对性格形成产生影响的吧 \n\nSame old",
       "annotations": {
-        "Same old": "意思：老样子"
+        "Same old": {
+          "text": "意思：老样子"
+        }
       }
     },
     "1924369935150743860": {
@@ -157,7 +161,9 @@
       "pikapaca": true,
       "translation": "情不自禁要跳起舞来的瞬间被麻衣酱下达了“别动”的指令！ \n\n嘿嘿🎵 \n\n“这是我的第二推荐哟 ”💛 \n麻衣酱自信满满地推荐了的炸虾排三明治🍤✨ \n\n非常超级好吃！ \n\n下次再一起吃吧~🌻✨",
       "annotations": {
-        "“别动”": "stay，经典训狗指令"
+        "“别动”": {
+          "text": "stay，经典训狗指令"
+        }
       }
     }
   },

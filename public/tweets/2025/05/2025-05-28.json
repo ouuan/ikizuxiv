@@ -129,14 +129,18 @@
       "pikapaca": true,
       "translation": "明天必须得赶紧去找找看呢~🌈✨\n\n春宫悠可里酱，呢~🏖️🏝️✨\n\n怎么想都是个beautiful的名字呢！！\n\n好嘞，给我等着🔫\n\n我一定会把Yutti给抓住的呢💝💘💖",
       "annotations": {
-        "Yutti": "萝拉给悠可里起的昵称"
+        "Yutti": {
+          "text": "萝拉给悠可里起的昵称"
+        }
       }
     },
     "1927717493662978195": {
       "pikapaca": true,
       "translation": "对了 \n也得马上把这个Breaking News告诉真绿酱才行🚀 \n\n虽然是这么想的 \n\n但是她果然应该已经睡了吧🧸✨",
       "annotations": {
-        "Breaking News": "重大新闻"
+        "Breaking News": {
+          "text": "重大新闻"
+        }
       }
     }
   },

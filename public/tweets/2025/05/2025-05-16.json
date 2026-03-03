@@ -142,7 +142,9 @@
       "pikapaca": true,
       "translation": "而且她好像最近刚刚从父母在的美国度完假回来……\n这样说来，难道就是从那个刚刚开始供应国产SAF燃料时间点的关空回来的？\n开始激动了🌎\n互相关注什么的……真棒呢🌳🌵",
       "annotations": {
-        "SAF燃料": "可持续航空燃料（sustainable aviation fuel）的简称，由废弃油、饲料、农业废弃物等制成"
+        "SAF燃料": {
+          "text": "可持续航空燃料（sustainable aviation fuel）的简称，由废弃油、饲料、农业废弃物等制成"
+        }
       }
     },
     "1923156187668938947": {

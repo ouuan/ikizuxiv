@@ -100,7 +100,9 @@
       "pikapaca": true,
       "translation": "早上好\n即使一个人的力量很微小，但如果大家可以齐心协力的话，一定能守护地球🌎的绿色的！我是相信着这点的Littlegreen小小的绿\n国产SAF燃料终于开始供应给飞机了，这个5月真是值得纪念啊🎏\n大家的黄金周都是如何度过的呢？",
       "annotations": {
-        "SAF燃料": "可持续航空燃料（sustainable aviation fuel）的简称，由废弃油、饲料、农业废弃物等制成"
+        "SAF燃料": {
+          "text": "可持续航空燃料（sustainable aviation fuel）的简称，由废弃油、饲料、农业废弃物等制成"
+        }
       }
     },
     "1919880855654433189": {

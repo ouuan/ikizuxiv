@@ -118,14 +118,18 @@
       "pikapaca": true,
       "translation": "现役高中生烘焙师Miracle的Mira-mira-miracle烘焙坊 \n今日的Menu是—— \n\n👇 \n🍋保罗的正宗意式脆饼/核桃&枣&柠檬 \n🍊橙&白巧克力玛德莲蛋糕 \n🍪喜马拉雅粉盐咸味曲奇",
       "annotations": {
-        "保罗的正宗意式脆饼": "应该是出自英国厨艺节目The Great British Bakeoff中，评委Paul Hollywood做的意式脆饼"
+        "保罗的正宗意式脆饼": {
+          "text": "应该是出自英国厨艺节目The Great British Bakeoff中，评委Paul Hollywood做的意式脆饼"
+        }
       }
     },
     "1909141340308582414": {
       "pikapaca": true,
       "translation": "嗯，已经超棒了，très bien~🏔 \n肯定每一款都很好吃哦~！！ \n每周开店一次🏰 \n卖完截止的网络限定 \n现役高中生甜点师Miracle的甜品店🍧🎂🍭🍬🍰🧁 \n请大家要多多支持哦~！！💪✨",
       "annotations": {
-        "très bien~": "トレビアン：法语，意思是超赞"
+        "très bien~": {
+          "text": "トレビアン：法语，意思是超赞"
+        }
       }
     },
     "1909141600221155725": {
