@@ -5,13 +5,13 @@
       "created_at": "2025-04-08 19:54:00 +08:00",
       "full_text": "明日の入学式に着ていく着物を選定中👘\nどっちがいい？\n蝶に花のちりめん友禅🦋で華やかにお嬢様風か、キリッと黒地に辻が花の訪問着🌸で格調高くーー\nうーん、迷うわ！\nこうなったら運天の花札🎴で決めちゃおう",
       "screen_name": "hanabistarmine",
-      "favorite_count": 428,
-      "retweet_count": 119,
+      "favorite_count": 423,
+      "retweet_count": 118,
       "bookmark_count": 29,
       "quoted_status": null,
       "quote_count": 18,
       "reply_count": 0,
-      "views_count": 35776,
+      "views_count": 35817,
       "media": []
     },
     "1909575702472728597": {
@@ -19,13 +19,13 @@
       "created_at": "2025-04-08 19:55:00 +08:00",
       "full_text": "きた🎴\n牡丹に蝶！　これで蝶🦋に決まりね\n呉服屋の娘は花札が得意✨\n縁起のいい衣装で、明日の入学式はつつがなく終わりますように\n私のほかにも着物で来る子いたりしないかな？👘",
       "screen_name": "hanabistarmine",
-      "favorite_count": 300,
+      "favorite_count": 296,
       "retweet_count": 33,
       "bookmark_count": 6,
       "quoted_status": null,
       "quote_count": 6,
       "reply_count": 1,
-      "views_count": 23683,
+      "views_count": 23716,
       "media": []
     },
     "1909584762953445445": {
@@ -33,13 +33,13 @@
       "created_at": "2025-04-08 20:31:00 +08:00",
       "full_text": "昨日東京から戻ってきて明日からはいよいよ新生活！\nやっぱりレビューは最高だった✨✨🌟\nいつかあんな風になりたいって思って、レッスン優先の生活をするためにネット高校への進学を決めたけど…\nこれからの私がどこに向かって走るのか\n私にもわからないのが少しーー楽しくて自分でも意外🥰",
       "screen_name": "Yukuri_talk",
-      "favorite_count": 358,
-      "retweet_count": 87,
+      "favorite_count": 354,
+      "retweet_count": 88,
       "bookmark_count": 14,
       "quoted_status": null,
       "quote_count": 17,
       "reply_count": 1,
-      "views_count": 42181,
+      "views_count": 42220,
       "media": []
     }
   },
@@ -48,22 +48,30 @@
       "pikapaca": true,
       "translation": "正在挑选明天开学典礼要穿的和服中👘 \n哪个比较好呢？ \n是选择蝴蝶配花的缩缅友禅🦋，华丽大小姐风；还是在黑底上有扎染花的访问着🌸，干练且格调又高—— \n唔——嗯，好纠结啊！ \n既然这样的话，就让命运的花札🎴来替我决定吧",
       "annotations": {
-        "缩缅友禅": "ちりめん友禅，京都的一种染色工艺",
-        "扎染花": "辻が花，一种织物手法"
+        "缩缅友禅": {
+          "text": "ちりめん友禅，京都的一种染色工艺"
+        },
+        "扎染花": {
+          "text": "辻が花，一种织物手法"
+        }
       }
     },
     "1909575702472728597": {
       "pikapaca": true,
       "translation": "来啦🎴 牡丹蝴蝶！\n那就决定是蝴蝶🦋了呢 \n身为和服店的女儿，我还是很擅长花札的✨ \n明天我会穿有好兆头的衣服，希望开学典礼可以顺顺利利的结束 \n不知道除了我以外，会不会也有别的同学穿着和服来呢？👘",
       "annotations": {
-        "牡丹蝴蝶": "牡丹に蝶，花札牌的名字"
+        "牡丹蝴蝶": {
+          "text": "牡丹に蝶，花札牌的名字"
+        }
       }
     },
     "1909584762953445445": {
       "pikapaca": true,
       "translation": "昨天从东京回来了，明天终于要开始新生活了！ \n果然歌舞剧最棒了呢！✨✨🌟 \n虽是因为想着有一天也要像那样表演，所以才决定入学网络高中的，这样我就可以把生活重心放在训练上…… \n从今往后我会向哪里奔去 \n就连我自己也不知道呢——我对居然有些雀跃的自己，感到有些意外🥰",
       "annotations": {
-        "歌舞剧": "原文为レビュー，也就是revue，相信大家都懂"
+        "歌舞剧": {
+          "text": "原文为レビュー，也就是revue，相信大家都懂"
+        }
       }
     }
   },

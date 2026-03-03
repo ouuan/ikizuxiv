@@ -5,13 +5,13 @@
       "created_at": "2025-09-17 22:48:00 +08:00",
       "full_text": "瞬殺のガンプラ\n#いきづらい部",
       "screen_name": "ShaunTheBunny",
-      "favorite_count": 1528,
-      "retweet_count": 547,
-      "bookmark_count": 39,
+      "favorite_count": 1500,
+      "retweet_count": 546,
+      "bookmark_count": 40,
       "quoted_status": null,
       "quote_count": 101,
       "reply_count": 12,
-      "views_count": 140418,
+      "views_count": 140563,
       "media": []
     },
     "1968326829703401581": {
@@ -19,13 +19,13 @@
       "created_at": "2025-09-17 22:51:00 +08:00",
       "full_text": "夜中のベッドで思い出しモヤり\n#いきづらい部",
       "screen_name": "ShaunTheBunny",
-      "favorite_count": 711,
-      "retweet_count": 116,
+      "favorite_count": 690,
+      "retweet_count": 117,
       "bookmark_count": 4,
       "quoted_status": null,
       "quote_count": 4,
       "reply_count": 2,
-      "views_count": 30687,
+      "views_count": 30745,
       "media": []
     },
     "1968327584477036742": {
@@ -33,13 +33,13 @@
       "created_at": "2025-09-17 22:54:00 +08:00",
       "full_text": "もちろん予約できなかったし！\n#いきづらい部",
       "screen_name": "ShaunTheBunny",
-      "favorite_count": 678,
+      "favorite_count": 655,
       "retweet_count": 165,
       "bookmark_count": 4,
       "quoted_status": null,
       "quote_count": 10,
       "reply_count": 1,
-      "views_count": 42393,
+      "views_count": 42453,
       "media": []
     },
     "1968328339304685678": {
@@ -47,13 +47,13 @@
       "created_at": "2025-09-17 22:57:00 +08:00",
       "full_text": "いいんだ別に\n\nそんな別にもともととくにすごく欲しいっていうわけでも…\nなかったしさ！！\n#いきづらい部",
       "screen_name": "ShaunTheBunny",
-      "favorite_count": 784,
-      "retweet_count": 161,
+      "favorite_count": 761,
+      "retweet_count": 162,
       "bookmark_count": 5,
       "quoted_status": null,
       "quote_count": 9,
       "reply_count": 6,
-      "views_count": 43760,
+      "views_count": 43820,
       "media": []
     },
     "1968329097173741981": {
@@ -61,13 +61,13 @@
       "created_at": "2025-09-17 23:00:01 +08:00",
       "full_text": "酸っぱい葡萄\n\nわかってるけど\nこういうのって言った方がなんかすっきりしない？\n#いきづらい部",
       "screen_name": "ShaunTheBunny",
-      "favorite_count": 691,
-      "retweet_count": 107,
+      "favorite_count": 669,
+      "retweet_count": 106,
       "bookmark_count": 5,
       "quoted_status": null,
       "quote_count": 3,
       "reply_count": 3,
-      "views_count": 31931,
+      "views_count": 31991,
       "media": []
     },
     "1968329849774231563": {
@@ -75,13 +75,13 @@
       "created_at": "2025-09-17 23:03:00 +08:00",
       "full_text": "だからここで叫ぶ！\nボクはプレ値なんかで買わないぞー！！\n#いきづらい部",
       "screen_name": "ShaunTheBunny",
-      "favorite_count": 1175,
-      "retweet_count": 320,
+      "favorite_count": 1148,
+      "retweet_count": 318,
       "bookmark_count": 25,
       "quoted_status": null,
       "quote_count": 32,
       "reply_count": 5,
-      "views_count": 79495,
+      "views_count": 79555,
       "media": []
     },
     "1968330603960709582": {
@@ -89,14 +89,64 @@
       "created_at": "2025-09-17 23:06:00 +08:00",
       "full_text": "それにしてもイデオンって赤いよね\n\nみんな大好きだよ❤\n#いきづらい部",
       "screen_name": "ShaunTheBunny",
-      "favorite_count": 1656,
-      "retweet_count": 659,
+      "favorite_count": 1631,
+      "retweet_count": 658,
       "bookmark_count": 59,
       "quoted_status": null,
       "quote_count": 127,
       "reply_count": 24,
-      "views_count": 148399,
+      "views_count": 148476,
       "media": []
     }
+  },
+  "translations": {
+    "1968326074418237892": {
+      "pikapaca": true,
+      "translation": "瞬间卖完的高达模型",
+      "annotations": {}
+    },
+    "1968326829703401581": {
+      "pikapaca": true,
+      "translation": "晚上躺在床上想到这个就有点不爽",
+      "annotations": {}
+    },
+    "1968327584477036742": {
+      "pikapaca": true,
+      "translation": "当然是没能成功预约到！",
+      "annotations": {}
+    },
+    "1968328339304685678": {
+      "pikapaca": true,
+      "translation": "没什么关系啦\n\n这个我本来也没有非常特别想要……\n没有想要啦！",
+      "annotations": {}
+    },
+    "1968329097173741981": {
+      "pikapaca": true,
+      "translation": "酸葡萄心理\n\n我也明白啦\n但是说出来的话总觉得更痛快点，不是吗？",
+      "annotations": {}
+    },
+    "1968329849774231563": {
+      "pikapaca": true,
+      "translation": "所以我要在这里喊出来！\n我是不会用溢价买这个的唷———！！",
+      "annotations": {}
+    },
+    "1968330603960709582": {
+      "pikapaca": true,
+      "translation": "不过这样说来，伊迪安是红的呢\n\n最喜欢大家啦❤️",
+      "annotations": {
+        "伊迪安": {
+          "text": "指机器人动画 传说巨神伊迪安"
+        }
+      }
+    }
+  },
+  "labels": {
+    "1968326074418237892": [],
+    "1968326829703401581": [],
+    "1968327584477036742": [],
+    "1968328339304685678": [],
+    "1968329097173741981": [],
+    "1968329849774231563": [],
+    "1968330603960709582": []
   }
 }

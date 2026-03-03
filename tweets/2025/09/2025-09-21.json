@@ -5,13 +5,13 @@
       "created_at": "2025-09-22 01:18:00 +08:00",
       "full_text": "生まれてこなければよかったと思う日もあれば\n生まれてきてよかったと思う瞬間もある\nボクの人生は今のところそんな感じ\n#いきづらい部",
       "screen_name": "ShaunTheBunny",
-      "favorite_count": 1366,
-      "retweet_count": 292,
-      "bookmark_count": 34,
+      "favorite_count": 1338,
+      "retweet_count": 293,
+      "bookmark_count": 36,
       "quoted_status": null,
       "quote_count": 56,
       "reply_count": 5,
-      "views_count": 68436,
+      "views_count": 68511,
       "media": []
     },
     "1969814128471552139": {
@@ -19,13 +19,13 @@
       "created_at": "2025-09-22 01:21:00 +08:00",
       "full_text": "だから\n「お誕生日おめでとう！」\nなんてあんまり安易に言いたくないけど\n#いきづらい部",
       "screen_name": "ShaunTheBunny",
-      "favorite_count": 1166,
-      "retweet_count": 195,
+      "favorite_count": 1136,
+      "retweet_count": 197,
       "bookmark_count": 18,
       "quoted_status": null,
       "quote_count": 5,
       "reply_count": 3,
-      "views_count": 66454,
+      "views_count": 66521,
       "media": []
     },
     "1969814883253592510": {
@@ -33,13 +33,13 @@
       "created_at": "2025-09-22 01:24:00 +08:00",
       "full_text": "これならまぁ\n心から言える\n\nこの世に生まれてきてくれてありがとうって\n#いきづらい部",
       "screen_name": "ShaunTheBunny",
-      "favorite_count": 1013,
-      "retweet_count": 211,
-      "bookmark_count": 16,
+      "favorite_count": 985,
+      "retweet_count": 210,
+      "bookmark_count": 17,
       "quoted_status": null,
       "quote_count": 8,
       "reply_count": 1,
-      "views_count": 41686,
+      "views_count": 41768,
       "media": []
     },
     "1969815638626517406": {
@@ -47,13 +47,13 @@
       "created_at": "2025-09-22 01:27:00 +08:00",
       "full_text": "キミがいてくれてボクの人生は少しマシなものになったし\nキミがこの世にいることがボクは嬉しいよ\n#いきづらい部",
       "screen_name": "ShaunTheBunny",
-      "favorite_count": 1033,
+      "favorite_count": 1006,
       "retweet_count": 224,
-      "bookmark_count": 18,
+      "bookmark_count": 20,
       "quoted_status": null,
       "quote_count": 7,
       "reply_count": 1,
-      "views_count": 44882,
+      "views_count": 44973,
       "media": []
     },
     "1969816394087719207": {
@@ -61,14 +61,48 @@
       "created_at": "2025-09-22 01:30:00 +08:00",
       "full_text": "名古屋までボクを迎えに来てくれた日のことはきっと永遠に忘れない\n良い誕生日をね❤\n#いきづらい部",
       "screen_name": "ShaunTheBunny",
-      "favorite_count": 1299,
+      "favorite_count": 1270,
       "retweet_count": 279,
-      "bookmark_count": 22,
+      "bookmark_count": 23,
       "quoted_status": null,
       "quote_count": 19,
       "reply_count": 1,
-      "views_count": 55150,
+      "views_count": 55251,
       "media": []
     }
+  },
+  "translations": {
+    "1969813373564182896": {
+      "pikapaca": true,
+      "translation": "如果说有“要是没出生就好了”的日子的话\n也会有那种觉得“出生了真是太好了的”瞬间\n我的人生现在差不多就是这种感觉",
+      "annotations": {}
+    },
+    "1969814128471552139": {
+      "pikapaca": true,
+      "translation": "所以\n我并不想轻易说出\n“生日快乐！”这种话",
+      "annotations": {}
+    },
+    "1969814883253592510": {
+      "pikapaca": true,
+      "translation": "这种情况下嘛\n我就会由衷地说\n\n“谢谢你来到这个世界”",
+      "annotations": {}
+    },
+    "1969815638626517406": {
+      "pikapaca": true,
+      "translation": "多亏了有你在，我的人生稍微变好了一点\n你能存在于这个世界之中，我很高兴哟",
+      "annotations": {}
+    },
+    "1969816394087719207": {
+      "pikapaca": true,
+      "translation": "你特地来名古屋接我的那天，我一定会永生铭记\n生日快乐❤",
+      "annotations": {}
+    }
+  },
+  "labels": {
+    "1969813373564182896": [],
+    "1969814128471552139": [],
+    "1969814883253592510": [],
+    "1969815638626517406": [],
+    "1969816394087719207": []
   }
 }
