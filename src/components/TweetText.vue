@@ -1,42 +1,46 @@
 <script setup lang="ts">
-import { NTooltip } from 'naive-ui';
 import { computed } from 'vue';
+import type { Annotation } from '../types';
+import TweetAnnotation from './TweetAnnotation.vue';
 
 const props = defineProps<{
   text: string;
   lang: 'ja' | 'zh-CN';
-  annotations?: Record<string, string>;
+  annotations?: Record<string, Annotation>;
   showAnnotations?: boolean;
 }>();
 
-interface TextPart {
-  type: 'text' | 'hashtag' | 'annotation';
+type TextPart = {
+  type: 'text' | 'hashtag';
   content: string;
-  annotation?: string;
-}
+} | {
+  type: 'annotation';
+  content: string;
+  annotation: Annotation;
+};
 
 const HASHTAG_REGEX = /#\S+/g;
 
 const parts = computed(() => {
   let parts: TextPart[] = [{ type: 'text', content: props.text }];
-  for (const [item, def] of Object.entries(props.annotations ?? {})) {
+  for (const [term, annotation] of Object.entries(props.annotations ?? {})) {
     const newParts: TextPart[] = [];
     for (const part of parts) {
       if (part.type !== 'text') {
         newParts.push(part);
         continue;
       }
-      const index = part.content.indexOf(item);
+      const index = part.content.indexOf(term);
       if (index === -1) {
         newParts.push(part);
       } else {
         const before = part.content.slice(0, index);
-        const after = part.content.slice(index + item.length);
+        const after = part.content.slice(index + term.length);
         if (before) newParts.push({ type: 'text', content: before });
         newParts.push({
           type: 'annotation',
-          content: item,
-          annotation: def,
+          content: term,
+          annotation,
         });
         if (after) newParts.push({ type: 'text', content: after });
       }
@@ -84,16 +88,11 @@ const parts = computed(() => {
         v-else-if="part.type === 'hashtag'"
         class="hashtag-link"
       >{{ part.content }}</span>
-      <n-tooltip
+      <tweet-annotation
         v-else-if="part.type === 'annotation'"
-        style="max-width: min(calc(90vw - 50px), 400px);"
-        :show="props.showAnnotations"
-      >
-        <template #trigger>
-          <span class="annotation">{{ part.content }}</span>
-        </template>
-        {{ part.annotation }}
-      </n-tooltip>
+        :part
+        :show-annotations
+      />
     </template>
   </div>
 </template>
@@ -119,16 +118,5 @@ const parts = computed(() => {
 
 .hashtag-link:link:hover {
   text-decoration: underline;
-}
-
-.annotation {
-  border-bottom: 1px dashed rgb(29, 155, 240);
-  cursor: help;
-}
-
-.annotation::after {
-  content: '*';
-  color: rgb(29, 155, 240);
-  vertical-align: super;
 }
 </style>

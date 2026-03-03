@@ -22,9 +22,14 @@ export type TranslationSource = {
   source: string;
 };
 
+export interface Annotation {
+  text: string;
+  images?: string[];
+};
+
 export type Translation = TranslationSource & {
   translation: string;
-  annotations: Record<string, string>;
+  annotations: Record<string, Annotation>;
 };
 
 export interface DayData {

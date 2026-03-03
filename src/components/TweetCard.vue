@@ -165,7 +165,10 @@ const handleAudioEnded = () => {
     if (annotations.length > 0) {
       showAnnotations.value = true;
 
-      const totalAnnotationLength = annotations.reduce((sum, text) => sum + text.length, 0);
+      const totalAnnotationLength = annotations.reduce(
+        (sum, item) => sum + item.text.length + (item.images ?? []).length * 5,
+        0,
+      );
       const displayDuration = totalAnnotationLength * 100 + 1000;
 
       setTimeout(() => {
@@ -284,7 +287,7 @@ watch(() => props.isAutoPlaying, async (newVal) => {
                 :text="translation!.translation"
                 lang="zh-CN"
                 :annotations="translation!.annotations"
-                :show-annotations="showAnnotations"
+                :show-annotations
               />
               <translator-info :translation="translation!" />
             </div>

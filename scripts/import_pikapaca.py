@@ -5,6 +5,8 @@ from sys import argv
 
 public_root = Path(__file__).parent.parent / 'public'
 tweets_root = public_root / 'tweets'
+annotation_image_root = public_root / 'assets' / 'annotations'
+annotation_image_root.mkdir(exist_ok=True)
 
 TIMEZONE = timezone(timedelta(hours=9))
 DATE_TIMEZONE = timezone(timedelta(hours=3)) # UTC+9 with 30-hour clock
@@ -13,6 +15,7 @@ FORMAT = '%Y-%m-%d %H:%M'
 for source in argv[1:]:
     with open(source, 'r') as f:
         source_items = json.load(f)
+    source_root = Path(source).parent.parent
     for source_item in source_items:
         original = source_item['original'].strip()
         try:
@@ -36,7 +39,17 @@ for source in argv[1:]:
             id = tweet['id']
             annotations = {}
             for annotation in source_item.get('annotations', []):
-                annotations[annotation['term']] = annotation['definition']
+                term = annotation['term']
+                definition = annotation['definition']
+                annotations[term]  = {
+                    'text': definition,
+                }
+                if 'anno_image' in annotation:
+                    images = annotations[term]['images'] = []
+                    for img in annotation['anno_image']:
+                        img_path = source_root / img
+                        img_path.copy(annotation_image_root / img_path.name)
+                        images.append(img_path.name)
             translations[id] = {
                 'pikapaca': True,
                 'translation': source_item['translation'].strip(),
