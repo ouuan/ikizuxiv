@@ -22,19 +22,21 @@ const showImage = ref(false);
     <template #trigger>
       <span class="annotation">{{ part.content }}</span>
     </template>
-    <span>{{ part.annotation.text }}</span>
-    <n-image-group
+    <div>{{ part.annotation.text }}</div>
+    <div
       v-if="part.annotation.images"
-      v-model:show="showImage"
+      style="margin-top: 6px;"
     >
-      <n-image
-        v-for="img of part.annotation.images"
-        :key="img"
-        :src="`/assets/annotations/${img}`"
-        object-fit="cover"
-        width="100%"
-      />
-    </n-image-group>
+      <n-image-group v-model:show="showImage">
+        <n-image
+          v-for="img of part.annotation.images"
+          :key="img"
+          :src="`/assets/annotations/${img}`"
+          object-fit="cover"
+          width="100%"
+        />
+      </n-image-group>
+    </div>
   </n-tooltip>
 </template>
 
