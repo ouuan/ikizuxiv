@@ -88,13 +88,14 @@ onMounted(async () => {
 });
 
 // Load day data when date changes
-watch(currentDate, async (newDate) => {
+watch(currentDate, async (newDate, oldDate) => {
   if (!newDate) return;
   loading.value = true;
   dayData.value = await loadDayData(newDate);
   loading.value = false;
   currentDateParam.value = newDate;
-  currentDateStorage.value = newDate;
+  if (oldDate) // only save to localStorage on page switching, not on initial load
+    currentDateStorage.value = newDate;
   await nextTick();
   window.scrollTo({ top: 0, behavior: 'auto' });
 }, { immediate: true });
