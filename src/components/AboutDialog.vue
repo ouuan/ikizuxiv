@@ -77,9 +77,15 @@ const showDialog = defineModel<boolean>({ required: true });
             代码仓库
           </n-a>
           ·
-          开发/维护者: ouuan
+          开发/维护者:
+          <n-a href="https://ouuan.moe/about">
+            ouuan
+          </n-a>
           <br>
-          License: AGPL-3.0-or-later
+          License:
+          <n-a href="https://spdx.org/licenses/AGPL-3.0-or-later.html">
+            AGPL-3.0-or-later
+          </n-a>
         </n-text>
       </n-p>
     </n-scrollbar>
