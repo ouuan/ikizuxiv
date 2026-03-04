@@ -29,7 +29,7 @@ export interface Annotation {
 
 export type Translation = TranslationSource & {
   translation: string;
-  annotations: Record<string, Annotation>;
+  annotations?: Record<string, Annotation>;
 };
 
 export interface DayData {

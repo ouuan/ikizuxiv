@@ -37,6 +37,10 @@ for source in argv[1:]:
             if original[:3] != tweet['full_text'][:3]:
                 continue
             id = tweet['id']
+            translations[id] = {
+                'pikapaca': True,
+                'translation': source_item['translation'].strip(),
+            }
             annotations = {}
             for annotation in source_item.get('annotations', []):
                 term = annotation['term']
@@ -50,12 +54,11 @@ for source in argv[1:]:
                         img_path = source_root / img
                         img_path.copy(annotation_image_root / img_path.name)
                         images.append(img_path.name)
-            translations[id] = {
-                'pikapaca': True,
-                'translation': source_item['translation'].strip(),
-                'annotations': annotations,
-            }
-            labels[id] = source_item.get('hidden_label', [])
+            if annotations:
+                translations[id]['annotations'] = annotations
+            label = source_item.get('hidden_label')
+            if label:
+                labels[id] = label
             with open(path, 'w') as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
             break
