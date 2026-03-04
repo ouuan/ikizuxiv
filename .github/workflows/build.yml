@@ -24,6 +24,9 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm lint
       - run: pnpm build
+        env:
+          VITE_MEILI_URL: ${{ secrets.MEILI_URL }}
+          VITE_MEILI_SEARCH_KEY: ${{ secrets.MEILI_SEARCH_KEY }}
       - uses: JamesIves/github-pages-deploy-action@v4
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
         with:

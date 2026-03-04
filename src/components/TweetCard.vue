@@ -26,7 +26,7 @@ import {
 } from '../constants';
 import { trackEvent } from '../track';
 import type { DisplayMode, ExtendedTweet } from '../types';
-import { formatTime, getAudioUrl } from '../utils';
+import { formatTime, getAudioUrl, toDateString } from '../utils';
 import MetricItem from './MetricItem.vue';
 import TranslatorInfo from './TranslatorInfo.vue';
 import TweetText from './TweetText.vue';
@@ -39,6 +39,7 @@ const props = defineProps<{
   isGroupedWithNext: boolean;
   audioPreload?: 'none' | 'auto';
   memberFilter: string;
+  isSearch?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -73,6 +74,12 @@ const handlePreloadAudio = () => {
 const avatarSrc = useAvatarSrc(props.tweet);
 
 const statusUrl = computed(() => {
+  if (props.isSearch) {
+    const params = new URLSearchParams();
+    params.set('date', toDateString(new Date(props.tweet.created_at)));
+    params.set('filter', props.tweet.screen_name);
+    return `#?${params}`;
+  }
   return `https://x.com/${props.tweet.screen_name}/status/${props.tweet.id}`;
 });
 
@@ -240,7 +247,7 @@ const toggleFilterTooltip = computed(
               rel="noopener noreferrer"
               class="user-time"
               :title="tweet.created_at"
-            >{{ formatTime(tweet.created_at) }}</a>
+            >{{ formatTime(tweet.created_at, props.isSearch) }}</a>
           </div>
         </div>
 

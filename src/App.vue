@@ -3,6 +3,7 @@ import { useHead } from '@unhead/vue';
 import { useLocalStorage, usePreferredDark } from '@vueuse/core';
 import {
   NConfigProvider,
+  NMessageProvider,
   darkTheme,
   dateZhCN,
   zhCN,
@@ -17,6 +18,7 @@ import {
 } from 'vue';
 import AboutDialog from './components/AboutDialog.vue';
 import NavigationBar from './components/NavigationBar.vue';
+import SearchDialog from './components/SearchDialog.vue';
 import SettingsDialog from './components/SettingsDialog.vue';
 import TweetList from './components/TweetList.vue';
 import useStoredParam from './composables/useStoredParam';
@@ -44,6 +46,7 @@ const dayData = ref<DayData | null>(null);
 const nextDayData = ref<DayData | null>(null);
 const loading = ref(false);
 const showSettings = ref(false);
+const showSearch = ref(false);
 const showAbout = ref(false);
 
 // Settings - stored in localStorage automatically with VueUse
@@ -201,8 +204,15 @@ function onSelectMember(member: string) {
     memberFilter.value = member;
 }
 
+function onSearch() {
+  showSearch.value = true;
+}
+
 useHead({
   title: computed(() => `ikizuXiv - いきづらい部！推文存档 (${currentDate.value})`),
+  bodyAttrs: {
+    class: computed(() => theme.value ? 'dark' : 'light'),
+  },
 });
 </script>
 
@@ -213,52 +223,59 @@ useHead({
     :locale="zhCN"
     :date-locale="dateZhCN"
   >
-    <div
-      class="app-container"
-      :class="{ dark: theme === darkTheme }"
-    >
-      <navigation-bar
-        :current-date="currentDate"
-        :dates="dates"
-        :has-prev="hasPrev"
-        :has-next="hasNext"
-        :member-filter="memberFilter"
-        :filter-name="filterName"
-        @prev="goToPrev"
-        @next="goToNext"
-        @prefetch-prev="prefetchPrev"
-        @date-change="onDateChange"
-        @clear-filter="memberFilter = 'all'"
-        @settings="showSettings = true"
-        @about="showAbout = true"
-      />
-
-      <settings-dialog
-        v-model:show="showSettings"
-        v-model:filter="memberFilter"
-        v-model:display-mode="displayMode"
-        v-model:theme-mode="themeMode"
-        v-model:primary-color-scheme="primaryColorScheme"
-        :date-index
-        :display-members
-        @select-date="onDateChange"
-      />
-      <about-dialog v-model="showAbout" />
-
-      <main class="main-content">
-        <tweet-list
-          :current-day-tweets
-          :loading
-          :display-mode
-          :member-filter
-          :filter-name
-          :has-next
-          :next-day-tweets
+    <n-message-provider>
+      <div class="app-container">
+        <navigation-bar
+          :current-date="currentDate"
+          :dates="dates"
+          :has-prev="hasPrev"
+          :has-next="hasNext"
+          :member-filter="memberFilter"
+          :filter-name="filterName"
+          @prev="goToPrev"
           @next="goToNext"
+          @prefetch-prev="prefetchPrev"
+          @date-change="onDateChange"
+          @clear-filter="memberFilter = 'all'"
+          @search="onSearch"
+          @settings="showSettings = true"
+          @about="showAbout = true"
+        />
+
+        <settings-dialog
+          v-model:show="showSettings"
+          v-model:filter="memberFilter"
+          v-model:display-mode="displayMode"
+          v-model:theme-mode="themeMode"
+          v-model:primary-color-scheme="primaryColorScheme"
+          :date-index
+          :display-members
+          @select-date="onDateChange"
+        />
+        <search-dialog
+          v-model:show="showSearch"
+          :display-mode="displayMode"
+          :display-members="displayMembers"
+          :member-filter="memberFilter"
           @select-member="onSelectMember"
         />
-      </main>
-    </div>
+        <about-dialog v-model="showAbout" />
+
+        <main class="main-content">
+          <tweet-list
+            :current-day-tweets
+            :loading
+            :display-mode
+            :member-filter
+            :filter-name
+            :has-next
+            :next-day-tweets
+            @next="goToNext"
+            @select-member="onSelectMember"
+          />
+        </main>
+      </div>
+    </n-message-provider>
   </n-config-provider>
 </template>
 
@@ -269,7 +286,7 @@ useHead({
     transition: background-color 0.3s;
 }
 
-.app-container.dark {
+.dark .app-container {
   background-color: #0f1419;
 }
 

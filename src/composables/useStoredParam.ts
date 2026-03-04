@@ -20,6 +20,11 @@ export default function useStoredParam(key: string) {
     if (initialized.value) store.value = newValue;
   });
 
+  watch(param, (newParam) => {
+    if (Array.isArray(newParam)) return;
+    if (value.value !== newParam) value.value = newParam;
+  });
+
   const init = async (validate: (value: string) => boolean, initialValue: string) => {
     if (typeof param.value === 'string' && validate(param.value)) {
       value.value = param.value;

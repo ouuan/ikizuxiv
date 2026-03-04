@@ -43,7 +43,7 @@ export function formatDate(asDate: string | number | Date): string {
   });
 }
 
-export function formatTime(dateStr: string): string {
+export function formatTime(dateStr: string, full?: boolean): string {
   const date = new Date(dateStr);
   const format: Intl.DateTimeFormatOptions = {
     hour: '2-digit',
@@ -51,7 +51,11 @@ export function formatTime(dateStr: string): string {
     hour12: false,
     timeZone: 'Asia/Tokyo',
   };
-  if (date.getUTCHours() >= 15 && date.getUTCHours() < 21) {
+  if (full) {
+    format.year = 'numeric';
+    format.month = 'numeric';
+    format.day = 'numeric';
+  } else if (date.getUTCHours() >= 15 && date.getUTCHours() < 21) {
     format.month = 'numeric';
     format.day = 'numeric';
   }

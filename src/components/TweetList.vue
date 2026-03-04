@@ -13,6 +13,7 @@ const props = defineProps<{
   filterName: string;
   hasNext: boolean;
   nextDayTweets: ExtendedTweet[] | null;
+  isSearch?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -85,11 +86,11 @@ watch(() => props.currentDayTweets, (newTweets) => {
 
 <!-- eslint-disable vuejs-accessibility/media-has-caption -->
 <template>
-  <div class="tweet-list">
+  <div>
     <n-spin :show="loading">
       <div
         v-if="!currentDayTweets?.length"
-        class="empty-container"
+        :style="{ padding: '16px' }"
       >
         <n-empty :description="`这一天${filterName}没有推文`" />
       </div>
@@ -104,6 +105,7 @@ watch(() => props.currentDayTweets, (newTweets) => {
           :is-grouped-with-next="isGrouped(tweet, currentDayTweets[index + 1])"
           :audio-preload="preloadAudioIds.has(tweet.id) ? 'auto' : 'none'"
           :member-filter
+          :is-search
           @auto-play-start="autoPlayTweet"
           @auto-play-next="onAutoPlayNext"
           @auto-play-stop="stopAutoPlay"
@@ -131,13 +133,3 @@ watch(() => props.currentDayTweets, (newTweets) => {
     />
   </div>
 </template>
-
-<style scoped>
-.tweet-list {
-    min-height: calc(100vh - 200px);
-}
-
-.empty-container {
-    padding: 60px 20px;
-}
-</style>

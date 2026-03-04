@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import {
-  ChevronBackOutline, ChevronForwardOutline, InformationCircleOutline, SettingsOutline,
+  ChevronBackOutline,
+  ChevronForwardOutline,
+  InformationCircleOutline,
+  SearchOutline,
+  SettingsOutline,
 } from '@vicons/ionicons5';
 import {
   NAvatar,
@@ -28,6 +32,7 @@ const emit = defineEmits<{
   prefetchPrev: [];
   dateChange: [date: string];
   clearFilter: [];
+  search: [];
   settings: [];
   about: [];
 }>();
@@ -138,6 +143,16 @@ const isDateDisabled = (ts: number) => {
             {{ GROUPS[memberFilter]?.name }}
           </n-avatar>
         </n-badge>
+      </n-button>
+
+      <n-button
+        quaternary
+        circle
+        @click="emit('search')"
+      >
+        <n-icon :size="20">
+          <search-outline />
+        </n-icon>
       </n-button>
 
       <n-button

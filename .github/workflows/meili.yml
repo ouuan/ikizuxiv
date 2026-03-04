@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  meili:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14.3'
+      - run: pip install requests
+      - run: python scripts/update_meili.py
+        env:
+          MEILI_URL: ${{ secrets.MEILI_URL }}
+          MEILI_ADMIN_KEY: ${{ secrets.MEILI_ADMIN_KEY }}
