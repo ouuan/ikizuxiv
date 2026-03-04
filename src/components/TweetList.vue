@@ -9,6 +9,7 @@ const props = defineProps<{
   currentDayTweets: ExtendedTweet[] | null;
   loading: boolean;
   displayMode: DisplayMode;
+  memberFilter: string;
   filterName: string;
   hasNext: boolean;
   nextDayTweets: ExtendedTweet[] | null;
@@ -102,11 +103,12 @@ watch(() => props.currentDayTweets, (newTweets) => {
           :is-grouped-with-prev="isGrouped(tweet, currentDayTweets[index - 1])"
           :is-grouped-with-next="isGrouped(tweet, currentDayTweets[index + 1])"
           :audio-preload="preloadAudioIds.has(tweet.id) ? 'auto' : 'none'"
+          :member-filter
           @auto-play-start="autoPlayTweet"
           @auto-play-next="onAutoPlayNext"
           @auto-play-stop="stopAutoPlay"
           @preload-audio="onPreloadAudio"
-          @select-member="(member) => emit('selectMember', member)"
+          @select-member="emit('selectMember', $event)"
         />
         <n-button
           v-if="hasNext"

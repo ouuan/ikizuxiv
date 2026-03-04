@@ -38,6 +38,7 @@ const props = defineProps<{
   isGroupedWithPrev: boolean;
   isGroupedWithNext: boolean;
   audioPreload?: 'none' | 'auto';
+  memberFilter: string;
 }>();
 
 const emit = defineEmits<{
@@ -169,6 +170,12 @@ watch(() => props.isAutoPlaying, async (newVal) => {
     }
   }
 }, { immediate: true });
+
+const toggleFilterTooltip = computed(
+  () => props.memberFilter === props.tweet.screen_name
+    ? '取消筛选'
+    : `筛选${NAMES[props.tweet.screen_name]?.new ?? props.tweet.screen_name}的推文`,
+);
 </script>
 
 <!-- eslint-disable vuejs-accessibility/media-has-caption -->
@@ -192,6 +199,7 @@ watch(() => props.isAutoPlaying, async (newVal) => {
       >
         <n-button
           text
+          :title="toggleFilterTooltip"
           @click="emit('selectMember', tweet.screen_name)"
         >
           <img
@@ -207,6 +215,7 @@ watch(() => props.isAutoPlaying, async (newVal) => {
           <n-button
             text
             class="user-link user-name-link"
+            :title="toggleFilterTooltip"
             @click="emit('selectMember', tweet.screen_name)"
           >
             <span class="user-name">
@@ -217,6 +226,7 @@ watch(() => props.isAutoPlaying, async (newVal) => {
             <n-button
               text
               class="user-link user-handle-link"
+              :title="toggleFilterTooltip"
               @click="emit('selectMember', tweet.screen_name)"
             >
               <span class="user-handle">

@@ -247,6 +247,7 @@ useHead({
           :current-day-tweets
           :loading
           :display-mode
+          :member-filter
           :filter-name
           :has-next
           :next-day-tweets
