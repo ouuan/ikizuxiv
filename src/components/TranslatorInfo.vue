@@ -7,7 +7,7 @@ const props = defineProps<{
 }>();
 
 const translator = computed(() => props.translation.pikapaca ? '羊驼' : props.translation.translator);
-const source = computed(() => props.translation.pikapaca ? 'https://pikapaca.github.io/IkizulivetwiZH/' : props.translation.source);
+const source = computed(() => props.translation.pikapaca ? 'https://ikizutwizh.pikapaca.cc/' : props.translation.source);
 </script>
 
 <template>

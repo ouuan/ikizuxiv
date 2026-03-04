@@ -40,7 +40,7 @@ const showDialog = defineModel<boolean>({ required: true });
         数据为手动更新，非实时最新数据
       </n-p>
       <n-p>
-        翻译主要来自<n-a href="https://pikapaca.github.io/IkizulivetwiZH/">
+        翻译主要来自<n-a href="https://ikizutwizh.pikapaca.cc/">
           <span>羊驼</span>
         </n-a>（已获得转载授权；做出来之后才发现对方也做了网站，经商议，我们均保留各自的网站）
       </n-p>
