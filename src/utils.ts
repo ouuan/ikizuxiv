@@ -35,12 +35,17 @@ export function formatDate(dateStr: string): string {
 
 export function formatTime(dateStr: string): string {
   const date = new Date(dateStr);
-  return date.toLocaleTimeString('zh-CN', {
+  const format: Intl.DateTimeFormatOptions = {
     hour: '2-digit',
     minute: '2-digit',
     hour12: false,
     timeZone: 'Asia/Tokyo',
-  });
+  };
+  if (date.getUTCHours() >= 15 && date.getUTCHours() < 21) {
+    format.month = 'numeric';
+    format.day = 'numeric';
+  }
+  return date.toLocaleTimeString('zh-CN', format);
 }
 
 export function getAudioUrl(tweet: Tweet): string {
