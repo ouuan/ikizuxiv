@@ -9,8 +9,10 @@ import {
   NSpace,
 } from 'naive-ui';
 import type { DisplayMode, PrimaryColorScheme, ThemeMode } from '../types';
+import GroupSelection from './GroupSelection.vue';
 
-const showDialog = defineModel<boolean>({ required: true });
+const showDialog = defineModel<boolean>('show', { required: true });
+const filter = defineModel<string>('filter', { required: true });
 const displayMode = defineModel<DisplayMode>('displayMode', { required: true });
 const themeMode = defineModel<ThemeMode>('themeMode', { required: true });
 const primaryColorScheme = defineModel<PrimaryColorScheme>(
@@ -38,7 +40,31 @@ const primaryColorScheme = defineModel<PrimaryColorScheme>(
         :cols="1"
         :y-gap="12"
       >
-        <n-form-item-gi label="翻译显示模式">
+        <n-form-item-gi
+          label="筛选显示"
+          :label-props="{ title: '点击头像筛选/取消筛选推文显示' }"
+        >
+          <n-space wrap>
+            <group-selection
+              v-model="filter"
+              group="asakusa"
+            />
+            <group-selection
+              v-model="filter"
+              group="sendai"
+            />
+            <group-selection
+              v-model="filter"
+              group="fukuiken"
+            />
+            <group-selection
+              v-model="filter"
+              group="umeda"
+            />
+          </n-space>
+        </n-form-item-gi>
+
+        <n-form-item-gi label="翻译显示">
           <n-radio-group
             v-model:value="displayMode"
             size="small"

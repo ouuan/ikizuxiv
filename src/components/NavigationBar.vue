@@ -3,15 +3,23 @@ import {
   ChevronBackOutline, ChevronForwardOutline, InformationCircleOutline, SettingsOutline,
 } from '@vicons/ionicons5';
 import {
-  NButton, NDatePicker, NIcon,
+  NAvatar,
+  NBadge,
+  NButton,
+  NDatePicker,
+  NIcon,
 } from 'naive-ui';
 import { computed } from 'vue';
+import { GROUPS, NAMES } from '../constants';
+import { getAvatarUrl } from '../utils';
 
 const props = defineProps<{
   currentDate: string;
   dates: string[];
   hasPrev: boolean;
   hasNext: boolean;
+  memberFilter: string;
+  filterName: string;
 }>();
 
 const emit = defineEmits<{
@@ -19,6 +27,7 @@ const emit = defineEmits<{
   next: [];
   prefetchPrev: [];
   dateChange: [date: string];
+  clearFilter: [];
   settings: [];
   about: [];
 }>();
@@ -112,6 +121,31 @@ const isDateDisabled = (ts: number) => {
       </n-button>
 
       <div class="nav-spacer" />
+
+      <n-button
+        v-if="memberFilter !== 'all'"
+        circle
+        size="small"
+        :title="`清除筛选: ${filterName}`"
+        :style="{ marginRight: '7px' }"
+        @click="emit('clearFilter')"
+      >
+        <n-badge value="×">
+          <n-avatar
+            v-if="NAMES[memberFilter]"
+            round
+            :size="27"
+            :src="getAvatarUrl(memberFilter, false)"
+          />
+          <n-avatar
+            v-else
+            round
+            :size="27"
+          >
+            {{ GROUPS[memberFilter]?.name }}
+          </n-avatar>
+        </n-badge>
+      </n-button>
 
       <n-button
         quaternary

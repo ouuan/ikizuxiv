@@ -39,6 +39,14 @@ export interface DayData {
   audio?: string[];
 }
 
+export interface ExtendedTweet extends Tweet {
+  translation?: Translation;
+  labels?: string[];
+  hasAudio: boolean;
+}
+
+export type DateIndex = Record<string, Record<string, number>>;
+
 export type DisplayMode = 'ja' | 'zh' | 'zh-ja' | 'ja-zh' | 'zh-ja-horizontal' | 'ja-zh-horizontal';
 export type ThemeMode = 'light' | 'dark' | 'system';
 export type PrimaryColorScheme = 'bluebird' | 'ikizuraibu';

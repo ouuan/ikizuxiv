@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { useHead } from '@unhead/vue';
-import {
-  useLocalStorage,
-  usePreferredDark,
-  useUrlSearchParams,
-} from '@vueuse/core';
+import { useLocalStorage, usePreferredDark } from '@vueuse/core';
 import {
   NConfigProvider,
   darkTheme,
@@ -17,29 +13,28 @@ import {
   nextTick,
   onMounted,
   ref,
-  toRef,
   watch,
 } from 'vue';
 import AboutDialog from './components/AboutDialog.vue';
 import NavigationBar from './components/NavigationBar.vue';
 import SettingsDialog from './components/SettingsDialog.vue';
 import TweetList from './components/TweetList.vue';
-import { THEMES } from './constants';
+import useStoredParam from './composables/useStoredParam';
+import { GROUPS, NAMES, THEMES } from './constants';
 import { initTracking } from './track';
 import type {
+  DateIndex,
   DayData,
   DisplayMode,
   PrimaryColorScheme,
   ThemeMode,
 } from './types';
-import { loadDates, loadDayData } from './utils';
+import { dayTweets, loadDateIndex, loadDayData } from './utils';
 
-const dates = ref<string[]>([]);
+const dateIndex = ref<DateIndex>();
 const primaryColorScheme = useLocalStorage<PrimaryColorScheme>('primaryColorScheme', 'bluebird');
 
-const currentDateParam = toRef(useUrlSearchParams('hash'), 'date');
-const currentDateStorage = useLocalStorage<string>('currentDate', '');
-const currentDate = ref('');
+const { value: currentDate, init: initCurrentDate } = useStoredParam('date');
 
 function isValidDate(dateStr: string): boolean {
   return /^\d{4}-\d{2}-\d{2}$/.test(dateStr);
@@ -64,41 +59,72 @@ const theme = computed<GlobalTheme | null>(() => {
   return prefersDark.value ? darkTheme : null;
 });
 
-onMounted(async () => {
-  initTracking();
+const { value: memberFilter, init: initMemberFilter } = useStoredParam('filter');
 
-  dates.value = await loadDates();
+function isValidMemberFilter(filter: string): boolean {
+  if (filter === 'all') return true;
+  if (Object.keys(NAMES).includes(filter)) return true;
+  if (Object.keys(GROUPS).includes(filter)) return true;
+  return false;
+}
 
-  // Load the first date by default, or use saved progress
-  if (dates.value.length > 0) {
-    if (!currentDate.value || !dates.value.includes(currentDate.value)) {
-      const firstDate = dates.value[0];
-      if (firstDate) currentDate.value = firstDate;
+const filterName = computed(() => {
+  if (memberFilter.value === 'all') return '';
+  return NAMES[memberFilter.value]?.new
+    ?? GROUPS[memberFilter.value]?.name
+    ?? '未知成员';
+});
+
+const displayMembers = computed(() => {
+  if (memberFilter.value === 'all') return Object.keys(NAMES);
+  for (const member of Object.keys(NAMES)) {
+    if (memberFilter.value === member) return [member];
+  }
+  for (const group of Object.keys(GROUPS)) {
+    if (memberFilter.value === group) return GROUPS[group]?.members ?? [];
+  }
+  return [];
+});
+
+const dates = computed(() => {
+  if (!dateIndex.value) return [];
+  const dates = [];
+  for (const [date, authorMap] of Object.entries(dateIndex.value)) {
+    for (const member of displayMembers.value) {
+      if (authorMap[member]) {
+        dates.push(date);
+        break;
+      }
     }
   }
+  dates.sort();
+  return dates;
+});
 
-  if (typeof currentDateParam.value === 'string' && isValidDate(currentDateParam.value)) {
-    currentDate.value = currentDateParam.value;
-  } else if (currentDateStorage.value && isValidDate(currentDateStorage.value)) {
-    currentDate.value = currentDateStorage.value;
-  } else if (dates.value[0]) {
-    // eslint-disable-next-line prefer-destructuring
-    currentDate.value = dates.value[0];
-  }
+onMounted(async () => {
+  initTracking();
+  await initMemberFilter(isValidMemberFilter, 'all');
+  dateIndex.value = await loadDateIndex();
+  await initCurrentDate(isValidDate, dates.value[0] ?? '');
 });
 
 // Load day data when date changes
-watch(currentDate, async (newDate, oldDate) => {
+watch(currentDate, async (newDate) => {
   if (!newDate) return;
   loading.value = true;
   dayData.value = await loadDayData(newDate);
   loading.value = false;
-  currentDateParam.value = newDate;
-  if (oldDate) // only save to localStorage on page switching, not on initial load
-    currentDateStorage.value = newDate;
   await nextTick();
   window.scrollTo({ top: 0, behavior: 'auto' });
 }, { immediate: true });
+
+const currentDayTweets = computed(() => {
+  return dayData.value ? dayTweets(dayData.value, displayMembers.value) : [];
+});
+
+const nextDayTweets = computed(() => {
+  return nextDayData.value ? dayTweets(nextDayData.value, displayMembers.value) : [];
+});
 
 const lowerBoundIndex = computed(() => {
   if (!currentDate.value) return 0;
@@ -168,6 +194,13 @@ const onDateChange = (date: string) => {
   currentDate.value = date;
 };
 
+function onSelectMember(member: string) {
+  if (memberFilter.value === member)
+    memberFilter.value = 'all';
+  else
+    memberFilter.value = member;
+}
+
 useHead({
   title: computed(() => `ikizuXiv - いきづらい部！推文存档 (${currentDate.value})`),
 });
@@ -189,16 +222,20 @@ useHead({
         :dates="dates"
         :has-prev="hasPrev"
         :has-next="hasNext"
+        :member-filter="memberFilter"
+        :filter-name="filterName"
         @prev="goToPrev"
         @next="goToNext"
         @prefetch-prev="prefetchPrev"
         @date-change="onDateChange"
+        @clear-filter="memberFilter = 'all'"
         @settings="showSettings = true"
         @about="showAbout = true"
       />
 
       <settings-dialog
-        v-model="showSettings"
+        v-model:show="showSettings"
+        v-model:filter="memberFilter"
         v-model:display-mode="displayMode"
         v-model:theme-mode="themeMode"
         v-model:primary-color-scheme="primaryColorScheme"
@@ -207,13 +244,14 @@ useHead({
 
       <main class="main-content">
         <tweet-list
-          :day-data="dayData"
-          :next-day-data="nextDayData"
-          :loading="loading"
-          :display-mode="displayMode"
-          :current-date="currentDate"
-          :has-next="hasNext"
+          :current-day-tweets
+          :loading
+          :display-mode
+          :filter-name
+          :has-next
+          :next-day-tweets
           @next="goToNext"
+          @select-member="onSelectMember"
         />
       </main>
     </div>

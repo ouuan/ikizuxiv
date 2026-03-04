@@ -70,7 +70,7 @@ const parts = computed(() => {
 <template>
   <div
     class="text-lines"
-    :lang="lang"
+    :lang
   >
     <template
       v-for="(part, index) of parts"

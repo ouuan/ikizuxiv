@@ -59,6 +59,9 @@ const showDialog = defineModel<boolean>({ required: true });
             有配音和自动播放还可以录制成视频
           </n-li>
           <n-li>
+            一开始没发现其他人做的类似网站（
+          </n-li>
+          <n-li>
             不需要那么多理由！
             <n-blockquote>
               これはどうだ？そんなのムリ！<br>

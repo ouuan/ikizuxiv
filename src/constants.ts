@@ -78,6 +78,30 @@ export const MEMBERS: MemberInfo[] = [
   },
 ];
 
+interface GroupInfo {
+  name: string;
+  members: string[];
+}
+
+export const GROUPS: Record<string, GroupInfo> = {
+  asakusa: {
+    name: '浅草',
+    members: ['polka_lion', 'My_Mai_Eld', 'G_Akky304250', 'hanabistarmine'],
+  },
+  fukuiken: {
+    name: '福井',
+    members: ['MiracleGoldSP', 'Noricco_U'],
+  },
+  umeda: {
+    name: '梅田',
+    members: ['Yukuri_talk', 'Rollie_twinkle', 'LittlegreenCom'],
+  },
+  sendai: {
+    name: '仙台',
+    members: ['ShaunTheBunny'],
+  },
+};
+
 export const NAMES = MEMBERS.reduce<Record<string, {
   old: string;
   new: string;

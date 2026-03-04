@@ -70,11 +70,17 @@ for tweet in tweets:
     tweet['media'] = media
     date_data.setdefault(path, { 'tweets': {} })['tweets'][id] = tweet
 
-dates = sorted(path.stem for path in date_data.keys())
-with open(tweets_root / 'dates.json', 'w') as f:
-    json.dump(dates, f, indent=2)
-
 for path, data in date_data.items():
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, 'w') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+
+index = {}
+
+for path, data in date_data.items():
+    m = index[path.stem] = {}
+    for tweet in data['tweets'].values():
+        m[tweet['screen_name']] = m.get(tweet['screen_name'], 0) + 1
+
+with open(tweets_root / 'index.json', 'w') as f:
+    json.dump(index, f, indent=2)

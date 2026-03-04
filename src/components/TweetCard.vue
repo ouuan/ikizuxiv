@@ -20,24 +20,19 @@ import {
   computed, nextTick,
   ref, watch,
 } from 'vue';
+import useAvatarSrc from '../composables/useAvatarSrc';
 import {
   COLOR, MEMBER_SUFFIX, NAMES, NOT_MEMBER_LABEL, RELEASE_DATE,
 } from '../constants';
 import { trackEvent } from '../track';
-import type {
-  DisplayMode, Translation,
-  Tweet,
-} from '../types';
+import type { DisplayMode, ExtendedTweet } from '../types';
 import { formatTime, getAudioUrl } from '../utils';
 import MetricItem from './MetricItem.vue';
 import TranslatorInfo from './TranslatorInfo.vue';
 import TweetText from './TweetText.vue';
 
 const props = defineProps<{
-  tweet: Tweet;
-  translation?: Translation;
-  labels?: string[];
-  hasAudio: boolean;
+  tweet: ExtendedTweet;
   displayMode: DisplayMode;
   isAutoPlaying: boolean;
   isGroupedWithPrev: boolean;
@@ -50,6 +45,7 @@ const emit = defineEmits<{
   autoPlayNext: [tweetId: string];
   autoPlayStop: [];
   preloadAudio: [tweetId: string];
+  selectMember: [member: string];
 }>();
 
 const cardRef = ref<HTMLElement>();
@@ -61,7 +57,7 @@ const memberName = computed(() => {
   const names = NAMES[props.tweet.screen_name];
   if (!names) return props.tweet.screen_name;
   if (new Date(props.tweet.created_at) < RELEASE_DATE) return names.old;
-  if (props.labels?.includes(NOT_MEMBER_LABEL)) return names.new;
+  if (props.tweet.labels?.includes(NOT_MEMBER_LABEL)) return names.new;
   return names.new + MEMBER_SUFFIX;
 });
 
@@ -73,42 +69,15 @@ const handlePreloadAudio = () => {
   emit('preloadAudio', props.tweet.id);
 };
 
-const avatarUrl = computed(() => {
-  if (new Date(props.tweet.created_at) < RELEASE_DATE)
-    return `/assets/avatar/old/${props.tweet.screen_name}.webp`;
-  return `/assets/avatar/new/${props.tweet.screen_name}.png`;
-});
-
-const profileUrl = computed(() => {
-  return `https://x.com/${props.tweet.screen_name}`;
-});
+const avatarSrc = useAvatarSrc(props.tweet);
 
 const statusUrl = computed(() => {
   return `https://x.com/${props.tweet.screen_name}/status/${props.tweet.id}`;
 });
 
-const showJapanese = computed(() => {
-  return props.displayMode === 'ja'
-    || props.displayMode === 'ja-zh'
-    || props.displayMode === 'zh-ja'
-    || props.displayMode === 'ja-zh-horizontal'
-    || props.displayMode === 'zh-ja-horizontal';
-});
+const showJapanese = computed(() => props.displayMode !== 'zh');
 
-const showChinese = computed(() => {
-  return props.translation && (
-    props.displayMode === 'zh'
-    || props.displayMode === 'ja-zh'
-    || props.displayMode === 'zh-ja'
-    || props.displayMode === 'ja-zh-horizontal'
-    || props.displayMode === 'zh-ja-horizontal'
-  );
-});
-
-const showTranslationEmpty = computed(() => {
-  const expectsChinese = props.displayMode !== 'ja';
-  return expectsChinese && !props.translation;
-});
+const showChinese = computed(() => props.displayMode !== 'ja');
 
 // Determine flex-direction based on display mode
 const flexDirection = computed(() => {
@@ -160,7 +129,7 @@ const handleAudioEnded = () => {
   isPlaying.value = false;
   if (props.isAutoPlaying) {
     // Check if there are annotations to display
-    const annotations = Object.values(props.translation?.annotations ?? {});
+    const annotations = Object.values(props.tweet.translation?.annotations ?? {});
 
     if (annotations.length > 0) {
       showAnnotations.value = true;
@@ -221,42 +190,39 @@ watch(() => props.isAutoPlaying, async (newVal) => {
         class="avatar-column"
         :class="{ 'grouped-prev': isGroupedWithPrev, 'grouped-next': isGroupedWithNext }"
       >
-        <a
-          :href="profileUrl"
-          target="_blank"
-          rel="noopener noreferrer"
+        <n-button
+          text
+          @click="emit('selectMember', tweet.screen_name)"
         >
           <img
-            :src="avatarUrl"
+            :src="avatarSrc"
             :alt="memberName"
             class="avatar"
           >
-        </a>
+        </n-button>
       </div>
 
       <div class="tweet-main">
         <div class="tweet-header">
-          <a
-            :href="profileUrl"
-            target="_blank"
-            rel="noopener noreferrer"
+          <n-button
+            text
             class="user-link user-name-link"
+            @click="emit('selectMember', tweet.screen_name)"
           >
             <span class="user-name">
               {{ memberName }}
             </span>
-          </a>
+          </n-button>
           <div class="user-meta">
-            <a
-              :href="profileUrl"
-              target="_blank"
-              rel="noopener noreferrer"
+            <n-button
+              text
               class="user-link user-handle-link"
+              @click="emit('selectMember', tweet.screen_name)"
             >
               <span class="user-handle">
                 @{{ tweet.screen_name }}
               </span>
-            </a>
+            </n-button>
             <span class="user-separator">·</span>
             <a
               :href="statusUrl"
@@ -268,48 +234,34 @@ watch(() => props.isAutoPlaying, async (newVal) => {
           </div>
         </div>
 
-        <div class="tweet-content">
+        <div>
           <div
             v-if="showJapanese && showChinese"
             class="text-content dual-language"
             :class="{ horizontal: isHorizontalLayout }"
             :style="{ flexDirection }"
           >
-            <div class="text-block japanese-text">
+            <div class="text-block">
               <tweet-text
                 :text="tweet.full_text"
                 lang="ja"
               />
             </div>
             <div class="text-separator" />
-            <div class="text-block chinese-text">
+            <div
+              v-if="tweet.translation"
+              class="text-block"
+            >
               <tweet-text
-                :text="translation!.translation"
+                :text="tweet.translation.translation"
                 lang="zh-CN"
-                :annotations="translation!.annotations"
+                :annotations="tweet.translation.annotations"
                 :show-annotations
               />
-              <translator-info :translation="translation!" />
+              <translator-info :translation="tweet.translation" />
             </div>
-          </div>
-
-          <div
-            v-else-if="showJapanese && showTranslationEmpty"
-            class="text-content dual-language"
-            :class="{ horizontal: isHorizontalLayout }"
-            :style="{ flexDirection }"
-          >
-            <div class="text-block japanese-text">
-              <tweet-text
-                :text="tweet.full_text"
-                lang="ja"
-              />
-            </div>
-            <div class="text-separator" />
-            <div class="text-block chinese-text">
-              <div class="empty-translation">
-                <n-empty description="暂无翻译" />
-              </div>
+            <div v-else>
+              <n-empty description="暂无翻译" />
             </div>
           </div>
 
@@ -326,30 +278,26 @@ watch(() => props.isAutoPlaying, async (newVal) => {
           </div>
 
           <div
-            v-else-if="showChinese"
+            v-else
             class="text-content"
           >
-            <div class="text-block">
+            <div
+              v-if="tweet.translation"
+              class="text-block"
+            >
               <tweet-text
-                :text="translation!.translation"
+                :text="tweet.translation.translation"
                 lang="zh-CN"
-                :annotations="translation!.annotations"
-                :show-annotations="showAnnotations"
+                :annotations="tweet.translation.annotations"
+                :show-annotations
               />
-              <translator-info :translation="translation!" />
+              <translator-info :translation="tweet.translation" />
             </div>
-          </div>
-
-          <div
-            v-else-if="showTranslationEmpty"
-            class="text-content"
-          >
-            <div class="empty-translation">
+            <div v-else>
               <n-empty description="暂无翻译" />
             </div>
           </div>
 
-          <!-- Media Grid -->
           <n-image-group>
             <div
               v-if="tweet.media.length > 0"
@@ -378,9 +326,8 @@ watch(() => props.isAutoPlaying, async (newVal) => {
             />
           </div>
 
-          <!-- Audio Controls -->
           <div
-            v-if="hasAudio"
+            v-if="tweet.hasAudio"
             class="audio-controls"
           >
             <n-button
@@ -460,7 +407,7 @@ watch(() => props.isAutoPlaying, async (newVal) => {
           </a>
 
           <audio
-            v-if="hasAudio"
+            v-if="tweet.hasAudio"
             ref="audioRef"
             :src="audioUrl"
             :preload="audioPreload || 'none'"
@@ -555,6 +502,15 @@ watch(() => props.isAutoPlaying, async (newVal) => {
     text-decoration: none;
 }
 
+.avatar-column :deep(button) {
+  padding: 0;
+  border-radius: 50%;
+}
+
+.avatar-column :deep(button:hover) {
+  background-color: black;
+}
+
 .avatar {
     width: 48px;
     height: 48px;
@@ -563,10 +519,15 @@ watch(() => props.isAutoPlaying, async (newVal) => {
   position: relative;
   z-index: 1;
   background-color: #ffffff;
+  transition: opacity 0.2s ease;
 }
 
-.dark .avatar {
-  background-color: #0f1419;
+.avatar-column :deep(button:hover) .avatar {
+  opacity: 0.9;
+}
+
+.dark .avatar-column :deep(button:hover) .avatar {
+  opacity: 0.8;
 }
 
 .tweet-main {
@@ -682,10 +643,6 @@ watch(() => props.isAutoPlaying, async (newVal) => {
 
 .text-separator {
     background-color: rgb(239, 243, 244);
-}
-
-.empty-translation :deep(.n-empty) {
-  padding: 12px 0;
 }
 
 /* For column layout (vertical) */

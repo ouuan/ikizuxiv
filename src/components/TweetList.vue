@@ -1,40 +1,34 @@
 <script setup lang="ts">
 import { NButton, NEmpty, NSpin } from 'naive-ui';
-import { computed, ref, watch } from 'vue';
-import type { DayData, DisplayMode, Tweet } from '../types';
+import { ref, watch } from 'vue';
+import type { DisplayMode, ExtendedTweet } from '../types';
 import { getAudioUrl } from '../utils';
 import TweetCard from './TweetCard.vue';
 
 const props = defineProps<{
-  dayData: DayData | null;
+  currentDayTweets: ExtendedTweet[] | null;
   loading: boolean;
   displayMode: DisplayMode;
-  currentDate: string;
+  filterName: string;
   hasNext: boolean;
-  nextDayData: DayData | null;
+  nextDayTweets: ExtendedTweet[] | null;
 }>();
 
 const emit = defineEmits<{
   next: [];
+  selectMember: [member: string];
 }>();
 
 const autoPlayingTweetId = ref<string | null>(null);
-const pendingAutoPlay = ref(false);
-const preloadAudioIds = ref<Set<string>>(new Set());
+const preloadAudioIds = ref(new Set<string>());
 const nextDayFirstAudioUrl = ref<string | null>(null);
-const tweetsArray = computed(() => {
-  if (!props.dayData?.tweets) return [];
-  return Object.values(props.dayData.tweets).sort((a, b) => {
-    return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
-  });
-});
 
-const isGrouped = (current: Tweet, next: Tweet | undefined) => {
-  if (!next) return false;
-  if (current.screen_name !== next.screen_name) return false;
-  const currentTime = new Date(current.created_at).getTime();
-  const nextTime = new Date(next.created_at).getTime();
-  return nextTime - currentTime < 10 * 60 * 1000;
+const isGrouped = (lhs?: ExtendedTweet, rhs?: ExtendedTweet) => {
+  if (!lhs || !rhs) return false;
+  if (lhs.screen_name !== rhs.screen_name) return false;
+  const lhsTime = new Date(lhs.created_at).getTime();
+  const rhsTime = new Date(rhs.created_at).getTime();
+  return Math.abs(rhsTime - lhsTime) < 10 * 60 * 1000;
 };
 
 const stopAutoPlay = () => {
@@ -45,71 +39,46 @@ const onPreloadAudio = (tweetId: string) => {
   preloadAudioIds.value.add(tweetId);
 };
 
-const preloadNextDayFirstAudio = () => {
-  if (!props.hasNext || !props.nextDayData?.audio || props.nextDayData.audio.length === 0) {
-    return;
-  }
-  const firstAudioId = props.nextDayData.audio[0];
-  if (firstAudioId) {
-    const tweets = Object.values(props.nextDayData.tweets);
-    const firstAudioTweet = tweets.find((t) => t.id === firstAudioId);
+function preloadNextDayFirstAudio() {
+  if (props.hasNext) {
+    const firstAudioTweet = props.nextDayTweets?.find((t) => t.hasAudio);
     if (firstAudioTweet) {
       nextDayFirstAudioUrl.value = getAudioUrl(firstAudioTweet);
+      return;
     }
   }
+  nextDayFirstAudioUrl.value = null;
 };
 
-const onAutoPlayStart = (tweetId: string) => {
-  pendingAutoPlay.value = false;
+function getNextAudioTweet(id: string) {
+  const currentIndex = props.currentDayTweets?.findIndex((t) => t.id === id) ?? -1;
+  if (currentIndex < 0) return null;
+  return props.currentDayTweets?.slice(currentIndex + 1).find((t) => t.hasAudio) ?? null;
+}
+
+const autoPlayTweet = (tweetId: string) => {
   autoPlayingTweetId.value = tweetId;
-  const currentIndex = tweetsArray.value.findIndex((t) => t.id === tweetId);
-  if (currentIndex >= 0 && currentIndex < tweetsArray.value.length - 1) {
-    const nextTweet = tweetsArray.value[currentIndex + 1];
-    if (nextTweet) preloadAudioIds.value.add(nextTweet.id);
-  }
-  // Preload next day's first audio when starting the last tweet
-  if (currentIndex === tweetsArray.value.length - 1) {
-    preloadNextDayFirstAudio();
-  }
+  const nextAudioTweet = getNextAudioTweet(tweetId);
+  if (nextAudioTweet) preloadAudioIds.value.add(nextAudioTweet.id);
+  else preloadNextDayFirstAudio();
 };
 
 const onAutoPlayNext = (currentId: string) => {
-  const currentIndex = tweetsArray.value.findIndex((t) => t.id === currentId);
-  if (currentIndex >= 0 && currentIndex < tweetsArray.value.length - 1) {
-    const nextTweet = tweetsArray.value[currentIndex + 1];
-    if (nextTweet) {
-      autoPlayingTweetId.value = nextTweet.id;
-      // Enable preload for next tweet
-      preloadAudioIds.value.add(nextTweet.id);
-      // Also preload the one after next
-      if (currentIndex + 2 < tweetsArray.value.length) {
-        const nextNextTweet = tweetsArray.value[currentIndex + 2];
-        if (nextNextTweet) preloadAudioIds.value.add(nextNextTweet.id);
-      }
-      // Preload next day's first audio when finishing the second-to-last tweet
-      if (currentIndex === tweetsArray.value.length - 2) {
-        preloadNextDayFirstAudio();
-      }
-    }
-  } else if (props.hasNext) {
-    pendingAutoPlay.value = true;
+  const nextAudioTweet = getNextAudioTweet(currentId);
+  if (nextAudioTweet) {
+    autoPlayTweet(nextAudioTweet.id);
+  } else if (nextDayFirstAudioUrl.value) {
     emit('next');
   } else {
     autoPlayingTweetId.value = null;
   }
 };
 
-// Reset auto-play when date changes
-watch(() => props.currentDate, () => {
-  if (!pendingAutoPlay.value) {
-    autoPlayingTweetId.value = null;
+watch(() => props.currentDayTweets, (newTweets) => {
+  if (autoPlayingTweetId.value) {
+    const firstAudioTweet = newTweets?.find((t) => t.hasAudio);
+    if (firstAudioTweet) autoPlayTweet(firstAudioTweet.id);
   }
-});
-
-watch(tweetsArray, (newTweets) => {
-  if (!pendingAutoPlay.value) return;
-  const firstTweet = newTweets[0];
-  if (firstTweet) onAutoPlayStart(firstTweet.id);
 });
 </script>
 
@@ -118,32 +87,26 @@ watch(tweetsArray, (newTweets) => {
   <div class="tweet-list">
     <n-spin :show="loading">
       <div
-        v-if="!dayData?.tweets || Object.keys(dayData.tweets).length === 0"
+        v-if="!currentDayTweets?.length"
         class="empty-container"
       >
-        <n-empty description="这一天没有推文" />
+        <n-empty :description="`这一天${filterName}没有推文`" />
       </div>
       <div v-else>
         <tweet-card
-          v-for="(tweet, index) of tweetsArray"
+          v-for="(tweet, index) of currentDayTweets"
           :key="tweet.id"
-          :tweet="tweet"
-          :translation="dayData.translations?.[tweet.id]"
-          :labels="dayData.labels?.[tweet.id]"
-          :has-audio="dayData.audio?.includes(tweet.id) || false"
-          :display-mode="displayMode"
+          :tweet
+          :display-mode
           :is-auto-playing="autoPlayingTweetId === tweet.id"
-          :is-grouped-with-prev="
-            index > 0 && isGrouped(tweetsArray[index - 1]!, tweet)
-          "
-          :is-grouped-with-next="
-            index < tweetsArray.length - 1 && isGrouped(tweet, tweetsArray[index + 1]!)
-          "
+          :is-grouped-with-prev="isGrouped(tweet, currentDayTweets[index - 1])"
+          :is-grouped-with-next="isGrouped(tweet, currentDayTweets[index + 1])"
           :audio-preload="preloadAudioIds.has(tweet.id) ? 'auto' : 'none'"
-          @auto-play-start="onAutoPlayStart"
+          @auto-play-start="autoPlayTweet"
           @auto-play-next="onAutoPlayNext"
           @auto-play-stop="stopAutoPlay"
           @preload-audio="onPreloadAudio"
+          @select-member="(member) => emit('selectMember', member)"
         />
         <n-button
           v-if="hasNext"
