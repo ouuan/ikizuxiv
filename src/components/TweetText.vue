@@ -56,10 +56,12 @@ const parts = computed(() => {
     let { content } = part;
     const matches = content.match(HASHTAG_REGEX);
     for (const match of matches ?? []) {
-      const [before, after] = content.split(match, 1);
+      const index = content.indexOf(match);
+      if (index === -1) continue;
+      const before = content.slice(0, index);
       if (before) newParts.push({ type: 'text', content: before });
       newParts.push({ type: 'hashtag', content: match });
-      content = after ?? '';
+      content = content.slice(index + match.length);
     }
     if (content) newParts.push({ type: 'text', content });
   }
