@@ -8,8 +8,19 @@ import {
   NRadioGroup,
   NSpace,
 } from 'naive-ui';
-import type { DisplayMode, PrimaryColorScheme, ThemeMode } from '../types';
+import type {
+  DateIndex,
+  DisplayMode,
+  PrimaryColorScheme,
+  ThemeMode,
+} from '../types';
 import GroupSelection from './GroupSelection.vue';
+import PostHeatmap from './PostHeatmap.vue';
+
+defineProps<{
+  dateIndex: DateIndex | undefined;
+  displayMembers: string[];
+}>();
 
 const showDialog = defineModel<boolean>('show', { required: true });
 const filter = defineModel<string>('filter', { required: true });
@@ -19,6 +30,15 @@ const primaryColorScheme = defineModel<PrimaryColorScheme>(
   'primaryColorScheme',
   { required: true },
 );
+
+const emit = defineEmits<{
+  selectDate: [date: string];
+}>();
+
+function selectDate(date: string) {
+  emit('selectDate', date);
+  showDialog.value = false;
+}
 </script>
 
 <template>
@@ -62,6 +82,14 @@ const primaryColorScheme = defineModel<PrimaryColorScheme>(
               group="umeda"
             />
           </n-space>
+        </n-form-item-gi>
+
+        <n-form-item-gi>
+          <post-heatmap
+            :date-index
+            :display-members
+            @select-date="selectDate"
+          />
         </n-form-item-gi>
 
         <n-form-item-gi label="翻译显示">

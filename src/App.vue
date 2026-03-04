@@ -239,6 +239,9 @@ useHead({
         v-model:display-mode="displayMode"
         v-model:theme-mode="themeMode"
         v-model:primary-color-scheme="primaryColorScheme"
+        :date-index
+        :display-members
+        @select-date="onDateChange"
       />
       <about-dialog v-model="showAbout" />
 
