@@ -17,6 +17,7 @@ const source = computed(() => props.translation.pikapaca ? 'https://ikizutwizh.p
         :href="source"
         target="_blank"
         rel="noopener noreferrer"
+        :aria-label="`查看翻译来源：${translator}`"
       >{{ translator }}</a>
     </div>
   </div>

@@ -129,6 +129,7 @@ watch(() => props.currentDayTweets, (newTweets) => {
       v-if="nextDayFirstAudioUrl"
       :src="nextDayFirstAudioUrl"
       preload="auto"
+      aria-hidden="true"
       style="display: none;"
     />
   </div>

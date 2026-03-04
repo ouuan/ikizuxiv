@@ -62,6 +62,8 @@ function selectDate(date: string) {
       >
         <n-form-item-gi
           label="筛选显示"
+          aria-label="筛选显示"
+          role="group"
           :label-props="{ title: '点击头像筛选/取消筛选推文显示' }"
         >
           <n-space wrap>

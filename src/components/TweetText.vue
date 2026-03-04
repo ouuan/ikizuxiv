@@ -84,6 +84,7 @@ const parts = computed(() => {
         :href="`https://x.com/hashtag/${part.content.slice(1)}`"
         target="_blank"
         rel="noopener noreferrer"
+        :aria-label="`查看话题 ${part.content}`"
         class="hashtag-link"
       >{{ part.content }}</a>
       <span

@@ -17,6 +17,8 @@ function onClick(value: string) {
 
 <template>
   <div
+    role="group"
+    :aria-label="`${GROUPS[group]?.name} 成员筛选`"
     :style="{
       border: 'solid 1px var(--n-border-color)',
       borderRadius: 'var(--n-border-radius)',
@@ -26,6 +28,8 @@ function onClick(value: string) {
     <n-space size="small">
       <n-button
         circle
+        :aria-label="`筛选 ${GROUPS[group]?.name}`"
+        :aria-pressed="filter === group"
         @click="() => onClick(group)"
       >
         <n-avatar
@@ -39,6 +43,8 @@ function onClick(value: string) {
         v-for="member of GROUPS[group]?.members"
         :key="member"
         circle
+        :aria-label="`筛选 ${NAMES[member]?.new ?? member}`"
+        :aria-pressed="filter === member"
         @click="() => onClick(member)"
       >
         <n-avatar

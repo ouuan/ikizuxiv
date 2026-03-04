@@ -32,6 +32,7 @@ const showImage = ref(false);
           v-for="img of part.annotation.images"
           :key="img"
           :src="`/assets/annotations/${img}`"
+          :alt="`${part.content} 注释图片`"
           object-fit="cover"
           width="100%"
         />

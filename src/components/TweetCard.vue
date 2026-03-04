@@ -206,6 +206,7 @@ const toggleFilterTooltip = computed(
       >
         <n-button
           text
+          :aria-label="toggleFilterTooltip"
           :title="toggleFilterTooltip"
           @click="emit('selectMember', tweet.screen_name)"
         >
@@ -222,6 +223,7 @@ const toggleFilterTooltip = computed(
           <n-button
             text
             class="user-link user-name-link"
+            :aria-label="toggleFilterTooltip"
             :title="toggleFilterTooltip"
             @click="emit('selectMember', tweet.screen_name)"
           >
@@ -233,6 +235,7 @@ const toggleFilterTooltip = computed(
             <n-button
               text
               class="user-link user-handle-link"
+              :aria-label="toggleFilterTooltip"
               :title="toggleFilterTooltip"
               @click="emit('selectMember', tweet.screen_name)"
             >
@@ -246,6 +249,7 @@ const toggleFilterTooltip = computed(
               target="_blank"
               rel="noopener noreferrer"
               class="user-time"
+              aria-label="在 X 查看原始推文"
               :title="tweet.created_at"
             >{{ formatTime(tweet.created_at, props.isSearch) }}</a>
           </div>
@@ -325,6 +329,7 @@ const toggleFilterTooltip = computed(
                 v-for="(media, index) of tweet.media"
                 :key="index"
                 :src="`/assets/media/${media}`"
+                :alt="`${memberName} 的推文图片 ${index + 1}`"
                 object-fit="cover"
                 width="100%"
               />
@@ -339,6 +344,8 @@ const toggleFilterTooltip = computed(
             <iframe
               :src="`https://platform.twitter.com/embed/Tweet.html?id=${tweet.quoted_status}`"
               :title="`Quoted Tweet ${tweet.quoted_status}`"
+              loading="lazy"
+              referrerpolicy="no-referrer"
               class="quoted-status-iframe"
             />
           </div>
@@ -351,6 +358,7 @@ const toggleFilterTooltip = computed(
               v-if="!isPlaying"
               secondary
               size="small"
+              aria-label="播放配音"
               :disabled="isAutoPlaying"
               @click="playAudio"
               @mouseenter="handlePreloadAudio"
@@ -367,6 +375,7 @@ const toggleFilterTooltip = computed(
               v-else
               secondary
               size="small"
+              aria-label="停止播放配音"
               @click="stopAudio"
             >
               <template #icon>
@@ -379,6 +388,7 @@ const toggleFilterTooltip = computed(
             <n-button
               secondary
               size="small"
+              aria-label="自动播放后续配音"
               :disabled="isAutoPlaying"
               @click="startAutoPlay"
               @mouseenter="handlePreloadAudio"
@@ -399,27 +409,32 @@ const toggleFilterTooltip = computed(
             target="_blank"
             rel="noopener noreferrer"
             class="tweet-metrics"
-            aria-label="View tweet on X"
+            aria-label="在 X 查看推文"
           >
             <metric-item
               :icon="ChatbubbleOutline"
               :count="tweet.reply_count"
+              name="回复数"
             />
             <metric-item
               :icon="RepeatOutline"
               :count="tweet.retweet_count + tweet.quote_count"
+              name="转发数"
             />
             <metric-item
               :icon="HeartOutline"
               :count="tweet.favorite_count"
+              name="点赞数"
             />
             <metric-item
               :icon="StatsChart"
               :count="tweet.views_count"
+              name="浏览量"
             />
             <metric-item
               :icon="BookmarkOutline"
               :count="tweet.bookmark_count"
+              name="收藏数"
             />
           </a>
 
@@ -428,6 +443,7 @@ const toggleFilterTooltip = computed(
             ref="audioRef"
             :src="audioUrl"
             :preload="audioPreload || 'none'"
+            aria-label="推文配音播放"
             @ended="handleAudioEnded"
           />
         </div>

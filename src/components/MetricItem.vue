@@ -6,6 +6,7 @@ import { computed } from 'vue';
 interface Props {
   icon: Component;
   count: number;
+  name: string;
 }
 
 const props = defineProps<Props>();
@@ -28,12 +29,15 @@ const exactCount = computed(() => {
 <template>
   <div
     class="metric-item"
-    :title="exactCount"
+    :aria-label="`${name}: ${exactCount}`"
   >
-    <n-icon :size="18">
+    <n-icon
+      :size="18"
+      :title="name"
+    >
       <component :is="icon" />
     </n-icon>
-    <span>{{ formattedCount }}</span>
+    <span :title="exactCount">{{ formattedCount }}</span>
   </div>
 </template>
 

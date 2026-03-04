@@ -84,11 +84,14 @@ watch(sortOrder, () => void doSearch());
     <n-space
       vertical
       size="large"
+      role="search"
+      aria-label="推文搜索"
     >
       <n-space justify="space-between">
         <n-input
           v-model:value="searchInput"
           type="text"
+          aria-label="搜索关键词"
           placeholder="输入关键词搜索..."
           clearable
           :loading="isSearching"
@@ -106,7 +109,10 @@ watch(sortOrder, () => void doSearch());
           label-placement="left"
           :show-feedback="false"
         >
-          <n-radio-group v-model:value="sortOrder">
+          <n-radio-group
+            v-model:value="sortOrder"
+            aria-label="搜索结果排序"
+          >
             <n-radio-button value="">
               相关度
             </n-radio-button>

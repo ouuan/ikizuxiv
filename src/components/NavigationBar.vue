@@ -83,6 +83,8 @@ const isDateDisabled = (ts: number) => {
       <n-button
         quaternary
         circle
+        aria-label="上一天"
+        title="上一天"
         :disabled="!hasPrev"
         @click="emit('prev')"
         @mouseenter="hasPrev && emit('prefetchPrev')"
@@ -97,6 +99,7 @@ const isDateDisabled = (ts: number) => {
         v-model:value="datePickerValue"
         type="date"
         size="large"
+        aria-label="选择日期"
         format="PPPP"
         input-readonly
         :is-date-disabled="isDateDisabled"
@@ -110,6 +113,8 @@ const isDateDisabled = (ts: number) => {
       <n-button
         quaternary
         circle
+        aria-label="下一天"
+        title="下一天"
         :disabled="!hasNext"
         @click="emit('next')"
       >
@@ -124,6 +129,7 @@ const isDateDisabled = (ts: number) => {
         v-if="memberFilter !== 'all'"
         circle
         size="small"
+        aria-label="清除筛选"
         :title="`清除筛选: ${filterName}`"
         :style="{ marginRight: '7px' }"
         @click="emit('clearFilter')"
@@ -148,6 +154,8 @@ const isDateDisabled = (ts: number) => {
       <n-button
         quaternary
         circle
+        aria-label="搜索推文"
+        title="搜索推文"
         @click="emit('search')"
       >
         <n-icon :size="20">
@@ -158,6 +166,8 @@ const isDateDisabled = (ts: number) => {
       <n-button
         quaternary
         circle
+        aria-label="打开设置"
+        title="打开设置"
         @click="emit('settings')"
       >
         <n-icon :size="20">
@@ -168,6 +178,8 @@ const isDateDisabled = (ts: number) => {
       <n-button
         quaternary
         circle
+        aria-label="关于本站"
+        title="关于本站"
         @click="emit('about')"
       >
         <n-icon :size="20">

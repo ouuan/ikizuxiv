@@ -32,7 +32,10 @@ const data = computed(() => {
 
 <template>
   <n-collapse>
-    <n-collapse-item title="推文数量热力图">
+    <n-collapse-item
+      title="推文数量热力图"
+      aria-label="推文数量热力图"
+    >
       <n-scrollbar x-scrollable>
         <n-heatmap
           :data
