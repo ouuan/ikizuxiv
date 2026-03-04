@@ -2,14 +2,15 @@
 import { SearchOutline } from '@vicons/ionicons5';
 import { useDebounceFn } from '@vueuse/core';
 import {
+  NDivider,
   NEmpty,
   NFormItem,
   NIcon,
+  NInfiniteScroll,
   NInput,
   NModal,
   NRadioButton,
   NRadioGroup,
-  NScrollbar,
   NSpace,
   NSpin,
   NText,
@@ -32,7 +33,13 @@ const emit = defineEmits<{
 const show = defineModel<boolean>('show', { required: true });
 
 const {
-  search, clearSearch, searchResults, isSearching,
+  search,
+  clearSearch,
+  searchResults,
+  isSearching,
+  isLoadingMore,
+  hasMore,
+  loadMore,
 } = useSearch();
 
 const searchInput = ref('');
@@ -137,9 +144,11 @@ watch(sortOrder, () => void doSearch());
           description="没有找到匹配的推文"
           size="large"
         />
-        <n-scrollbar
+        <n-infinite-scroll
           v-else
+          :distance="200"
           :style="{ maxHeight: 'calc(90vh - 120px)' }"
+          @load="loadMore"
         >
           <tweet-list
             :current-day-tweets="searchResults"
@@ -152,7 +161,23 @@ watch(sortOrder, () => void doSearch());
             is-search
             @select-member="(member) => emit('selectMember', member)"
           />
-        </n-scrollbar>
+          <n-space
+            v-if="isLoadingMore"
+            justify="center"
+            style="padding: 12px 0;"
+          >
+            <n-spin size="small">
+              <template #description>
+                正在加载更多…
+              </template>
+            </n-spin>
+          </n-space>
+          <n-divider v-else-if="!hasMore">
+            <n-text depth="3">
+              没有更多结果了
+            </n-text>
+          </n-divider>
+        </n-infinite-scroll>
       </div>
     </n-space>
   </n-modal>
