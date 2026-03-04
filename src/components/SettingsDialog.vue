@@ -48,7 +48,7 @@ function selectDate(date: string) {
     preset="card"
     size="small"
     :auto-focus="false"
-    :style="{ width: '100%', maxWidth: '520px', margin: '0 auto' }"
+    :style="{ maxWidth: '520px' }"
   >
     <n-form
       label-placement="left"

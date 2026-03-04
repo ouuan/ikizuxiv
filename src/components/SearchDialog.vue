@@ -147,7 +147,7 @@ watch(sortOrder, () => void doSearch());
         <n-infinite-scroll
           v-else
           :distance="200"
-          :style="{ maxHeight: 'calc(90vh - 120px)' }"
+          :style="{ maxHeight: 'calc(90vh - 175px)' }"
           @load="loadMore"
         >
           <tweet-list

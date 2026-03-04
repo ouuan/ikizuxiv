@@ -20,9 +20,9 @@ const showDialog = defineModel<boolean>({ required: true });
     title="关于 ikizuXiv"
     preset="card"
     :auto-focus="false"
-    :style="{ maxWidth: '520px', margin: '0 auto' }"
+    :style="{ maxWidth: '520px' }"
   >
-    <n-scrollbar style="max-height: 75vh">
+    <n-scrollbar :style="{ maxHeight: 'calc(90vh - 100px)' }">
       <n-p>
         这是一个非官方的
         <n-a href="https://www.lovelive-anime.jp/lovehigh/">
