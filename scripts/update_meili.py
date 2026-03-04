@@ -70,6 +70,15 @@ task = meili(
             { "locales": ["ja"], "attributePatterns": ["full_text"] },
             { "locales": ["zh"], "attributePatterns": ["translation.translation", "labels"] },
         ],
+        "rankingRules": [
+            "sort",
+            "words",
+            "typo",
+            "proximity",
+            "attributeRank",
+            "wordPosition",
+            "exactness",
+        ]
     },
 )
 wait_meili(task)
