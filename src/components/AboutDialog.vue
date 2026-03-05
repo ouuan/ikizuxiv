@@ -31,7 +31,7 @@ const showDialog = defineModel<boolean>({ required: true });
         <n-a href="https://x.com/i/lists/1921767698423521764">
           いきづらい部！
         </n-a>
-        X 推文存档网站，包含原文、中文翻译和 AI 配音（补全中）
+        X 推文存档网站，包含原文、中文翻译、注释和 AI 配音（补全中）
       </n-p>
       <n-p>
         "ikizuXiv" 的 "Xiv" 来自 "archive"，读作 イキヅカイブ
