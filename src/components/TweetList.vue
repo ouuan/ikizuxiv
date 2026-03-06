@@ -124,7 +124,6 @@ watch(() => props.currentDayTweets, (newTweets) => {
         </n-button>
       </div>
     </n-spin>
-    <!-- Hidden audio element for preloading next day's first audio -->
     <audio
       v-if="nextDayFirstAudioUrl"
       :src="nextDayFirstAudioUrl"

@@ -336,7 +336,6 @@ const toggleFilterTooltip = computed(
             </div>
           </n-image-group>
 
-          <!-- Quoted Status -->
           <div
             v-if="tweet.quoted_status"
             class="quoted-status"
@@ -403,7 +402,6 @@ const toggleFilterTooltip = computed(
             </n-button>
           </div>
 
-          <!-- Metrics -->
           <a
             :href="statusUrl"
             target="_blank"
