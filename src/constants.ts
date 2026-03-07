@@ -20,7 +20,7 @@ export const MEMBERS: MemberInfo[] = [
     username: 'polka_lion',
     name: '高橋ポルカ',
     oldname: 'Polka',
-    color: '#ffff66',
+    color: '#f0f060', // reduced brightness
   },
   {
     username: 'My_Mai_Eld',
@@ -74,7 +74,7 @@ export const MEMBERS: MemberInfo[] = [
     username: 'ShaunTheBunny',
     name: '佐々木翔音',
     oldname: 'shion',
-    color: '#f2f2f2',
+    color: '#e8e8e8', // reduced brightness
   },
 ];
 
