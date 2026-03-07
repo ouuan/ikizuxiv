@@ -7,6 +7,7 @@ import {
   NScrollbar,
 } from 'naive-ui';
 import { computed } from 'vue';
+import { COLOR } from '../constants';
 import type { DateIndex } from '../types';
 import { toDateString } from '../utils';
 
@@ -28,6 +29,21 @@ const data = computed(() => {
   }
   return data;
 });
+
+const memberColor = computed(() => {
+  if (props.displayMembers.length !== 1) return null;
+  return COLOR[props.displayMembers[0] ?? ''] || '#249fde';
+});
+
+function generateColorGradient(baseColor: string): string[] {
+  const LS = [0.84, 0.72, 0.6, 0.48];
+  return LS.map((l) => `oklch(from ${baseColor} ${l} c h)`);
+}
+
+const heatmapColors = computed(() => {
+  if (!memberColor.value) return undefined;
+  return generateColorGradient(memberColor.value);
+});
 </script>
 
 <template>
@@ -40,6 +56,7 @@ const data = computed(() => {
         <n-heatmap
           :data
           color-theme="blue"
+          :active-colors="heatmapColors"
           size="small"
           :first-day-of-week="6"
           tooltip
