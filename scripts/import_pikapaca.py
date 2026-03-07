@@ -1,4 +1,5 @@
 import json
+import jsonschema
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from sys import argv
@@ -12,9 +13,105 @@ TIMEZONE = timezone(timedelta(hours=9))
 DATE_TIMEZONE = timezone(timedelta(hours=3)) # UTC+9 with 30-hour clock
 FORMAT = '%Y-%m-%d %H:%M'
 
+schema = {
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["member", "date"],
+    "additionalProperties": False,
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the entry"
+      },
+      "member": {
+        "type": "string",
+        "description": "Name of the member who posted"
+      },
+      "translation": {
+        "type": "string",
+        "description": "Chinese translation of the original content"
+      },
+      "original": {
+        "type": "string",
+        "description": "Original Japanese text"
+      },
+      "date": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}$",
+        "description": "Timestamp in format YYYY-MM-DD HH:MM"
+      },
+      "tags": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Category tags for the entry"
+      },
+      "annotations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": False,
+          "required": ["term"],
+          "properties": {
+            "term": {
+              "type": "string",
+              "description": "The term being annotated"
+            },
+            "definition": {
+              "type": "string",
+              "description": "Definition or explanation of the term"
+            },
+            "anno_image": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Image paths related to the annotation"
+            }
+          }
+        },
+        "description": "Additional annotations and explanations"
+      },
+      "images": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Paths to associated images"
+      },
+      "hidden_label": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Hidden labels or categories"
+      },
+      "quotedId": {
+        "type": "string",
+        "description": "ID of the entry being quoted/referenced"
+      },
+      "hidden": {
+        "type": "boolean",
+        "description": "Whether the entry is hidden"
+      },
+      "deleted": {
+        "type": "boolean",
+        "description": "Whether the entry has been deleted"
+      },
+    }
+  }
+}
+
 for source in argv[1:]:
     with open(source, 'r') as f:
         source_items = json.load(f)
+    try:
+        jsonschema.validate(instance=source_items, schema=schema)
+    except jsonschema.ValidationError as e:
+        print(f'Unexpected source data {source}: {e.message}')
+        raise e
     source_root = Path(source).parent.parent
     for source_item in source_items:
         original = source_item['original'].strip()
@@ -63,7 +160,7 @@ for source in argv[1:]:
                 json.dump(data, f, ensure_ascii=False, indent=2)
             break
         else:
-            if source_item.get('hidden'):
+            if source_item.get('hidden') or source_item.get('deleted') or source_item.get('original', '').strip() == '':
                 continue
             print(f'Warning: No matching tweet')
             print(source_item)
