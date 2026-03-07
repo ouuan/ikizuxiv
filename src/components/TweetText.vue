@@ -7,7 +7,7 @@ const props = defineProps<{
   text: string;
   lang: 'ja' | 'zh-CN';
   annotations?: Record<string, Annotation>;
-  showAnnotations?: boolean;
+  showAnnotation?: string;
 }>();
 
 type TextPart = {
@@ -94,7 +94,7 @@ const parts = computed(() => {
       <tweet-annotation
         v-else-if="part.type === 'annotation'"
         :part
-        :show-annotations
+        :show-annotation="showAnnotation === part.content"
       />
     </template>
   </div>

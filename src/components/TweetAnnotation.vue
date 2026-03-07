@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { NImage, NImageGroup, NTooltip } from 'naive-ui';
-import { ref } from 'vue';
+import { nextTick, ref, watch } from 'vue';
 import type { Annotation } from '../types';
 
 const props = defineProps<{
@@ -8,16 +8,26 @@ const props = defineProps<{
     content: string;
     annotation: Annotation;
   };
-  showAnnotations?: boolean;
+  showAnnotation?: boolean;
 }>();
 
 const showImage = ref(false);
+const forceShow = ref<boolean>();
+
+watch(() => props.showAnnotation, async (show) => {
+  if (show) {
+    forceShow.value = true;
+  } else if (forceShow.value) {
+    forceShow.value = false;
+    await nextTick(() => forceShow.value = undefined);
+  }
+});
 </script>
 
 <template>
   <n-tooltip
     style="max-width: min(calc(200vw / 3 + 15px), 400px);"
-    :show="showImage || props.showAnnotations"
+    :show="showImage || forceShow"
   >
     <template #trigger>
       <span class="annotation">{{ part.content }}</span>

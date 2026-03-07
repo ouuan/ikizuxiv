@@ -53,7 +53,7 @@ const emit = defineEmits<{
 const cardRef = ref<HTMLElement>();
 const audioRef = ref<HTMLAudioElement>();
 const isPlaying = ref(false);
-const showAnnotations = ref<boolean>();
+const showAnnotation = ref<string>();
 
 const memberName = computed(() => {
   const names = NAMES[props.tweet.screen_name];
@@ -137,22 +137,36 @@ const handleAudioEnded = () => {
   isPlaying.value = false;
   if (props.isAutoPlaying) {
     // Check if there are annotations to display
-    const annotations = Object.values(props.tweet.translation?.annotations ?? {});
+    const annotationEntries = Object.entries(props.tweet.translation?.annotations ?? {});
 
-    if (annotations.length > 0) {
-      showAnnotations.value = true;
+    if (annotationEntries.length > 0) {
+      let cumulativeDelay = 0;
 
-      const totalAnnotationLength = annotations.reduce(
-        (sum, item) => sum + item.text.length + (item.images ?? []).length * 5,
-        0,
-      );
-      const displayDuration = totalAnnotationLength * 80 + 500;
+      // Sort annotations by their occurrence position in the text
+      const translationText = props.tweet.translation?.translation ?? '';
+      const sortedAnnotationEntries = annotationEntries.sort(([termA], [termB]) => {
+        const posA = translationText.indexOf(termA);
+        const posB = translationText.indexOf(termB);
+        return posA - posB;
+      });
 
-      setTimeout(() => {
-        showAnnotations.value = false;
-        emit('autoPlayNext', props.tweet.id);
-        void nextTick(() => showAnnotations.value = undefined);
-      }, displayDuration);
+      // Show annotations one by one
+      sortedAnnotationEntries.forEach(([term, annotation], index) => {
+        const annotationLength = annotation.text.length + (annotation.images ?? []).length * 5;
+        const displayDuration = annotationLength * 80 + 500;
+
+        setTimeout(() => {
+          showAnnotation.value = term;
+          if (index === sortedAnnotationEntries.length - 1) {
+            setTimeout(() => {
+              showAnnotation.value = undefined;
+              emit('autoPlayNext', props.tweet.id);
+            }, displayDuration);
+          }
+        }, cumulativeDelay);
+
+        cumulativeDelay += displayDuration;
+      });
     } else {
       // No annotations, proceed to next tweet immediately
       const delay = props.isGroupedWithNext ? 300 : 1000;
@@ -277,7 +291,7 @@ const toggleFilterTooltip = computed(
                 :text="tweet.translation.translation"
                 lang="zh-CN"
                 :annotations="tweet.translation.annotations"
-                :show-annotations
+                :show-annotation
               />
               <translator-info :translation="tweet.translation" />
             </div>
@@ -310,7 +324,7 @@ const toggleFilterTooltip = computed(
                 :text="tweet.translation.translation"
                 lang="zh-CN"
                 :annotations="tweet.translation.annotations"
-                :show-annotations
+                :show-annotation
               />
               <translator-info :translation="tweet.translation" />
             </div>
