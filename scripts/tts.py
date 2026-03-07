@@ -37,7 +37,7 @@ for path in sorted(tweets_root.glob('*/*/*.json')):
                 text = re.sub(src, dst, text)
             pyperclip.copy(text.strip())
             created_at = datetime.fromisoformat(tweet["created_at"]).astimezone(TOKYO_TZ).strftime('%Y-%m-%d %H:%M:%S')
-            print(f'{"-" * 80}\n{created_at} @{sender}:\n\n{tweet["full_text"]}')
+            print(f'{"-" * 80}\n{created_at} @{sender} #{id}:\n\n{tweet["full_text"]}')
             translation = translations.get(id)
             if translation:
                 print(f'{"-" * 34} Translation {"-" * 33}\n{translation['translation']}')
