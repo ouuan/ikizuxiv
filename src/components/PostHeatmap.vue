@@ -5,8 +5,10 @@ import {
   NCollapseItem,
   NHeatmap,
   NScrollbar,
+  useThemeVars,
 } from 'naive-ui';
 import { computed } from 'vue';
+import useThemeMode from '../composables/useThemeMode';
 import { COLOR } from '../constants';
 import type { DateIndex, PrimaryColorScheme } from '../types';
 import { toDateString } from '../utils';
@@ -31,30 +33,19 @@ const data = computed(() => {
   return data;
 });
 
-const colorTheme = computed(() => {
-  switch (props.primaryColorScheme) {
-    case 'bluebird':
-      return 'blue';
-    case 'ikizuraibu':
-      return 'orange';
-    default:
-      return undefined;
-  }
-});
+const themeVars = useThemeVars();
+
+const { themeMode } = useThemeMode();
 
 const memberColor = computed(() => {
-  if (props.displayMembers.length !== 1) return null;
-  return COLOR[props.displayMembers[0] ?? ''] || '#249fde';
+  if (props.displayMembers.length !== 1) return themeVars.value.primaryColor;
+  return COLOR[props.displayMembers[0] ?? ''] || themeVars.value.primaryColor;
 });
-
-function generateColorGradient(baseColor: string): string[] {
-  const LS = [0.84, 0.72, 0.6, 0.48];
-  return LS.map((l) => `oklch(from ${baseColor} ${l} c h)`);
-}
 
 const activeColors = computed(() => {
   if (!memberColor.value) return undefined;
-  return generateColorGradient(memberColor.value);
+  const ls = themeMode.value === 'light' ? [0.84, 0.72, 0.6, 0.48] : [0.52, 0.64, 0.76, 0.88];
+  return ls.map((l) => `oklch(from ${memberColor.value} ${l} c h)`);
 });
 </script>
 
@@ -67,7 +58,6 @@ const activeColors = computed(() => {
       <n-scrollbar x-scrollable>
         <n-heatmap
           :data
-          :color-theme
           :active-colors
           size="small"
           :first-day-of-week="6"

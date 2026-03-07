@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useHead } from '@unhead/vue';
-import { useLocalStorage, usePreferredDark } from '@vueuse/core';
+import { useLocalStorage } from '@vueuse/core';
 import {
   NConfigProvider,
   NMessageProvider,
@@ -22,6 +22,7 @@ import SearchDialog from './components/SearchDialog.vue';
 import SettingsDialog from './components/SettingsDialog.vue';
 import TweetList from './components/TweetList.vue';
 import useStoredParam from './composables/useStoredParam';
+import useThemeMode from './composables/useThemeMode';
 import { GROUPS, NAMES, THEMES } from './constants';
 import { initTracking } from './track';
 import type {
@@ -29,7 +30,6 @@ import type {
   DayData,
   DisplayMode,
   PrimaryColorScheme,
-  ThemeMode,
 } from './types';
 import { dayTweets, loadDateIndex, loadDayData } from './utils';
 
@@ -49,18 +49,10 @@ const showSettings = ref(false);
 const showSearch = ref(false);
 const showAbout = ref(false);
 
-// Settings - stored in localStorage automatically with VueUse
 const displayMode = useLocalStorage<DisplayMode>('displayMode', 'zh-ja');
-const themeMode = useLocalStorage<ThemeMode>('themeMode', 'system');
+const { themeMode, themeModeStore } = useThemeMode();
 
-// Theme - use VueUse's usePreferredDark
-const prefersDark = usePreferredDark();
-
-const theme = computed<GlobalTheme | null>(() => {
-  if (themeMode.value === 'dark') return darkTheme;
-  if (themeMode.value === 'light') return null;
-  return prefersDark.value ? darkTheme : null;
-});
+const theme = computed(() => themeMode.value === 'dark' ? darkTheme : null);
 
 const { value: memberFilter, init: initMemberFilter } = useStoredParam('filter');
 
@@ -218,7 +210,7 @@ useHead({
 
 <template>
   <n-config-provider
-    :theme="theme"
+    :theme
     :theme-overrides="THEMES[primaryColorScheme]"
     :locale="zhCN"
     :date-locale="dateZhCN"
@@ -246,7 +238,7 @@ useHead({
           v-model:show="showSettings"
           v-model:filter="memberFilter"
           v-model:display-mode="displayMode"
-          v-model:theme-mode="themeMode"
+          v-model:theme-mode="themeModeStore"
           v-model:primary-color-scheme="primaryColorScheme"
           :date-index
           :display-members
