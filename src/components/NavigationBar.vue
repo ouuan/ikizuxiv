@@ -14,7 +14,7 @@ import {
   NIcon,
 } from 'naive-ui';
 import { computed } from 'vue';
-import { GROUPS, NAMES } from '../constants';
+import { NAMES } from '../constants';
 import { getAvatarUrl, toDateString } from '../utils';
 
 const props = defineProps<{
@@ -127,7 +127,7 @@ const isDateDisabled = (ts: number) => {
 
       <n-button
         v-if="memberFilter !== 'all'"
-        circle
+        text
         size="small"
         aria-label="清除筛选"
         :title="`清除筛选: ${filterName}`"
@@ -136,18 +136,16 @@ const isDateDisabled = (ts: number) => {
       >
         <n-badge value="×">
           <n-avatar
-            v-if="NAMES[memberFilter]"
+            v-if="memberFilter in NAMES"
             round
             :size="27"
-            :src="getAvatarUrl(memberFilter, false)"
+            :src="getAvatarUrl(memberFilter, 'new')"
           />
           <n-avatar
             v-else
-            round
             :size="27"
-          >
-            {{ GROUPS[memberFilter]?.name }}
-          </n-avatar>
+            :src="getAvatarUrl(memberFilter, 'group')"
+          />
         </n-badge>
       </n-button>
 

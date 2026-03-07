@@ -27,29 +27,28 @@ function onClick(value: string) {
   >
     <n-space size="small">
       <n-button
-        circle
+        text
         :aria-label="`筛选 ${GROUPS[group]?.name}`"
         :aria-pressed="filter === group"
         @click="() => onClick(group)"
       >
         <n-avatar
-          round
+          :src="getAvatarUrl(group, 'group')"
           :class="{ selected: filter === group }"
-        >
-          {{ GROUPS[group]?.name }}
-        </n-avatar>
+          :title="GROUPS[group]?.name"
+        />
       </n-button>
       <n-button
         v-for="member of GROUPS[group]?.members"
         :key="member"
-        circle
+        text
         :aria-label="`筛选 ${NAMES[member]?.new ?? member}`"
         :aria-pressed="filter === member"
         @click="() => onClick(member)"
       >
         <n-avatar
           round
-          :src="getAvatarUrl(member, false)"
+          :src="getAvatarUrl(member, 'new')"
           :class="{ selected: filter === member }"
           :title="NAMES[member]?.new"
         />

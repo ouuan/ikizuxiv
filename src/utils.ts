@@ -68,9 +68,8 @@ export function getAudioUrl(tweet: Tweet): string {
   return `/assets/audio/${year}/${month}/${tweet.id}.mp3`;
 }
 
-export function getAvatarUrl(username: string, old: boolean): string {
-  if (old) return `/assets/avatar/old/${username}.webp`;
-  return `/assets/avatar/new/${username}.png`;
+export function getAvatarUrl(username: string, type: 'new' | 'old' | 'group'): string {
+  return `/assets/avatar/${type}/${username}.webp`;
 }
 
 export function dayTweets(dayData: DayData, displayMembers: string[]): ExtendedTweet[] {

@@ -6,6 +6,6 @@ import { getAvatarUrl } from '../utils';
 export default function useAvatarSrc(tweet: MaybeRefOrGetter<Tweet>) {
   return computed(() => {
     const t = toValue(tweet);
-    return getAvatarUrl(t.screen_name, new Date(t.created_at) < RELEASE_DATE);
+    return getAvatarUrl(t.screen_name, new Date(t.created_at) < RELEASE_DATE ? 'old' : 'new');
   });
 }

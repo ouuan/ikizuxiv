@@ -85,19 +85,19 @@ interface GroupInfo {
 
 export const GROUPS: Record<string, GroupInfo> = {
   asakusa: {
-    name: '浅草',
+    name: '浅草分校',
     members: ['polka_lion', 'My_Mai_Eld', 'G_Akky304250', 'hanabistarmine'],
   },
   fukuiken: {
-    name: '福井',
+    name: '福井分校',
     members: ['MiracleGoldSP', 'Noricco_U'],
   },
   umeda: {
-    name: '梅田',
+    name: '梅田分校',
     members: ['Yukuri_talk', 'Rollie_twinkle', 'LittlegreenCom'],
   },
   sendai: {
-    name: '仙台',
+    name: '仙台分校',
     members: ['ShaunTheBunny'],
   },
 };
