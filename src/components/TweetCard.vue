@@ -146,7 +146,7 @@ const handleAudioEnded = () => {
         (sum, item) => sum + item.text.length + (item.images ?? []).length * 5,
         0,
       );
-      const displayDuration = totalAnnotationLength * 100 + 1000;
+      const displayDuration = totalAnnotationLength * 80 + 500;
 
       setTimeout(() => {
         showAnnotations.value = false;
