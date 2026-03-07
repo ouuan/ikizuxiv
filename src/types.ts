@@ -37,6 +37,7 @@ export interface DayData {
   translations?: Record<string, Translation>;
   labels?: Record<string, string[]>;
   audio?: string[];
+  bilibili?: string[];
 }
 
 export interface ExtendedTweet extends Tweet {

@@ -8,15 +8,14 @@ import {
   dateZhCN,
   zhCN,
 } from 'naive-ui';
-import type { GlobalTheme } from 'naive-ui';
 import {
   computed,
-  nextTick,
   onMounted,
   ref,
   watch,
 } from 'vue';
 import AboutDialog from './components/AboutDialog.vue';
+import BiliVideos from './components/BiliVideos.vue';
 import NavigationBar from './components/NavigationBar.vue';
 import SearchDialog from './components/SearchDialog.vue';
 import SettingsDialog from './components/SettingsDialog.vue';
@@ -109,8 +108,10 @@ watch(currentDate, async (newDate) => {
   loading.value = true;
   dayData.value = await loadDayData(newDate);
   loading.value = false;
-  await nextTick();
-  window.scrollTo({ top: 0, behavior: 'auto' });
+  setTimeout(() => {
+    // nextTick somehow doesn't work when there are Bilibili iframes
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, 1);
 }, { immediate: true });
 
 const currentDayTweets = computed(() => {
@@ -264,6 +265,10 @@ useHead({
             :next-day-tweets
             @next="goToNext"
             @select-member="onSelectMember"
+          />
+          <bili-videos
+            v-if="dayData?.bilibili?.length"
+            :aids="dayData.bilibili"
           />
         </main>
       </div>
