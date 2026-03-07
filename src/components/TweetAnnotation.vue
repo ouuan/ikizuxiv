@@ -19,7 +19,8 @@ watch(() => props.showAnnotation, async (show) => {
     forceShow.value = true;
   } else if (forceShow.value) {
     forceShow.value = false;
-    await nextTick(() => forceShow.value = undefined);
+    await nextTick();
+    forceShow.value = undefined;
   }
 });
 </script>

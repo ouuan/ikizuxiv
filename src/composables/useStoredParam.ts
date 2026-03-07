@@ -33,7 +33,8 @@ export default function useStoredParam(key: string) {
     } else {
       value.value = initialValue;
     }
-    await nextTick(() => initialized.value = true);
+    await nextTick();
+    initialized.value = true;
   };
 
   return { value, init };
