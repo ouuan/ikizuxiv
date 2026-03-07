@@ -90,6 +90,7 @@ function selectDate(date: string) {
           <post-heatmap
             :date-index
             :display-members
+            :primary-color-scheme
             @select-date="selectDate"
           />
         </n-form-item-gi>

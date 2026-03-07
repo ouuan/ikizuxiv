@@ -8,12 +8,13 @@ import {
 } from 'naive-ui';
 import { computed } from 'vue';
 import { COLOR } from '../constants';
-import type { DateIndex } from '../types';
+import type { DateIndex, PrimaryColorScheme } from '../types';
 import { toDateString } from '../utils';
 
 const props = defineProps<{
   dateIndex: DateIndex | undefined;
   displayMembers: string[];
+  primaryColorScheme: PrimaryColorScheme;
 }>();
 
 const emit = defineEmits<{
@@ -30,6 +31,17 @@ const data = computed(() => {
   return data;
 });
 
+const colorTheme = computed(() => {
+  switch (props.primaryColorScheme) {
+    case 'bluebird':
+      return 'blue';
+    case 'ikizuraibu':
+      return 'orange';
+    default:
+      return undefined;
+  }
+});
+
 const memberColor = computed(() => {
   if (props.displayMembers.length !== 1) return null;
   return COLOR[props.displayMembers[0] ?? ''] || '#249fde';
@@ -40,7 +52,7 @@ function generateColorGradient(baseColor: string): string[] {
   return LS.map((l) => `oklch(from ${baseColor} ${l} c h)`);
 }
 
-const heatmapColors = computed(() => {
+const activeColors = computed(() => {
   if (!memberColor.value) return undefined;
   return generateColorGradient(memberColor.value);
 });
@@ -55,8 +67,8 @@ const heatmapColors = computed(() => {
       <n-scrollbar x-scrollable>
         <n-heatmap
           :data
-          color-theme="blue"
-          :active-colors="heatmapColors"
+          :color-theme
+          :active-colors
           size="small"
           :first-day-of-week="6"
           tooltip
