@@ -83,4 +83,4 @@ for path, data in date_data.items():
         m[tweet['screen_name']] = m.get(tweet['screen_name'], 0) + 1
 
 with open(tweets_root / 'index.json', 'w') as f:
-    json.dump(index, f, indent=2)
+    json.dump(index, f, indent=2, sort_keys=True)
