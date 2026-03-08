@@ -15,11 +15,11 @@ import {
   watch,
 } from 'vue';
 import AboutDialog from './components/AboutDialog.vue';
-import BiliVideos from './components/BiliVideos.vue';
 import NavigationBar from './components/NavigationBar.vue';
 import SearchDialog from './components/SearchDialog.vue';
 import SettingsDialog from './components/SettingsDialog.vue';
 import TweetList from './components/TweetList.vue';
+import VideoList from './components/VideoList.vue';
 import useStoredParam from './composables/useStoredParam';
 import useThemeMode from './composables/useThemeMode';
 import { GROUPS, NAMES, THEMES } from './constants';
@@ -266,9 +266,9 @@ useHead({
             @next="goToNext"
             @select-member="onSelectMember"
           />
-          <bili-videos
-            v-if="dayData?.bilibili?.length"
-            :aids="dayData.bilibili"
+          <video-list
+            v-if="dayData?.videos?.length"
+            :videos="dayData.videos"
           />
         </main>
       </div>

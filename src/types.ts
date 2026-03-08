@@ -32,12 +32,17 @@ export type Translation = TranslationSource & {
   annotations?: Record<string, Annotation>;
 };
 
+export interface VideoList {
+  website: 'bilibili' | 'youtube';
+  id: string;
+}
+
 export interface DayData {
   tweets: Record<string, Tweet>;
   translations?: Record<string, Translation>;
   labels?: Record<string, string[]>;
   audio?: string[];
-  bilibili?: string[];
+  videos?: VideoList[];
 }
 
 export interface ExtendedTweet extends Tweet {
