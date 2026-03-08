@@ -170,5 +170,11 @@
       "translation": "话说回来今天有视频配信！\n要看哦~🏔"
     }
   },
-  "labels": {}
+  "labels": {},
+  "videos": [
+    {
+      "website": "bilibili",
+      "id": "114749027124578"
+    }
+  ]
 }
