@@ -84,5 +84,11 @@
       "views_count": 13300,
       "media": []
     }
-  }
+  },
+  "videos": [
+    {
+      "website": "youtube",
+      "id": "WrJbObe1-uk"
+    }
+  ]
 }
