@@ -14,5 +14,15 @@
       "views_count": 71207,
       "media": []
     }
-  }
+  },
+  "videos": [
+    {
+      "website": "bilibili",
+      "id": "116107427974979"
+    },
+    {
+      "website": "bilibili",
+      "id": "116078034291717"
+    }
+  ]
 }
