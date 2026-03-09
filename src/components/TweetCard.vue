@@ -21,6 +21,7 @@ import {
   ref, watch,
 } from 'vue';
 import useAvatarSrc from '../composables/useAvatarSrc';
+import useThemeMode from '../composables/useThemeMode';
 import {
   COLOR, MEMBER_SUFFIX, NAMES, NOT_MEMBER_LABEL, RELEASE_DATE,
 } from '../constants';
@@ -40,6 +41,7 @@ const props = defineProps<{
   audioPreload?: 'none' | 'auto';
   memberFilter: string;
   isSearch?: boolean;
+  quotedTweet?: ExtendedTweet;
 }>();
 
 const emit = defineEmits<{
@@ -103,6 +105,8 @@ const flexDirection = computed(() => {
 const isHorizontalLayout = computed(() => {
   return props.displayMode === 'zh-ja-horizontal' || props.displayMode === 'ja-zh-horizontal';
 });
+
+const { themeMode } = useThemeMode();
 
 const playAudio = (e?: MouseEvent) => {
   if (!audioRef.value) return;
@@ -352,14 +356,26 @@ const toggleFilterTooltip = computed(
 
           <div
             v-if="tweet.quoted_status"
-            class="quoted-status"
+            :style="{ marginBottom: '12px' }"
           >
+            <tweet-card
+              v-if="quotedTweet"
+              :tweet="quotedTweet"
+              :display-mode
+              :is-auto-playing="false"
+              :is-grouped-with-prev="false"
+              :is-grouped-with-next="false"
+              :member-filter
+              class="quoted-status"
+              @select-member="emit('selectMember', $event)"
+            />
             <iframe
-              :src="`https://platform.twitter.com/embed/Tweet.html?id=${tweet.quoted_status}`"
+              v-else
+              :src="`https://platform.twitter.com/embed/Tweet.html?id=${tweet.quoted_status}&theme=${themeMode}`"
               :title="`Quoted Tweet ${tweet.quoted_status}`"
               loading="lazy"
               referrerpolicy="no-referrer"
-              class="quoted-status-iframe"
+              class="quoted-status"
             />
           </div>
 
@@ -736,18 +752,17 @@ const toggleFilterTooltip = computed(
     grid-template-columns: 1fr 1fr;
 }
 
-.quoted-status {
-    margin-bottom: 12px;
-}
-
-.quoted-status-iframe {
+iframe.quoted-status {
     width: 100%;
     min-height: 300px;
+}
+
+.quoted-status {
     border: 1px solid rgb(239, 243, 244);
     border-radius: 16px;
 }
 
-.dark .quoted-status-iframe {
+.dark .quoted-status {
     border-color: rgb(47, 51, 54);
 }
 

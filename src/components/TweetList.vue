@@ -106,6 +106,7 @@ watch(() => props.currentDayTweets, (newTweets) => {
           :audio-preload="preloadAudioIds.has(tweet.id) ? 'auto' : 'none'"
           :member-filter
           :is-search
+          :quoted-tweet="currentDayTweets.find((t) => t.id === tweet.quoted_status)"
           @auto-play-start="autoPlayTweet"
           @auto-play-next="onAutoPlayNext"
           @auto-play-stop="stopAutoPlay"
