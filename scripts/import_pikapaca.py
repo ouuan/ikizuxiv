@@ -131,7 +131,7 @@ for source in argv[1:]:
         for tweet in tweets.values():
             if datetime.fromisoformat(tweet['created_at']).astimezone(TIMEZONE).strftime(FORMAT) != source_item['date']:
                 continue
-            if original[:3] != tweet['full_text'][:3]:
+            if original.strip()[:3] != tweet['full_text'].replace('#いきづらい部', '').strip()[:3]:
                 continue
             id = tweet['id']
             translations[id] = {
