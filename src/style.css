@@ -1,3 +1,12 @@
 * {
     box-sizing: border-box;
 }
+
+@font-face {
+  font-family: "Twemoji";
+  src: url("/assets/fonts/twemoji.woff2") format("woff2");
+  unicode-range:
+    U+1F000-1FAFF,
+    U+2600-26FF,
+    U+2700-27BF;
+}

@@ -3,6 +3,7 @@ import { useHead } from '@unhead/vue';
 import { useLocalStorage } from '@vueuse/core';
 import {
   NConfigProvider,
+  NGlobalStyle,
   NMessageProvider,
   darkTheme,
   dateZhCN,
@@ -216,6 +217,7 @@ useHead({
     :locale="zhCN"
     :date-locale="dateZhCN"
   >
+    <n-global-style />
     <n-message-provider>
       <div class="app-container">
         <navigation-bar

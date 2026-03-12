@@ -118,6 +118,21 @@ export const COLOR = MEMBERS.reduce<Record<string, string>>((acc, member) => {
   return acc;
 }, {});
 
+const FONT_FAMILY = [
+  'Twemoji',
+  'system-ui',
+  '-apple-system',
+  'BlinkMacSystemFont',
+  'Segoe UI',
+  'Roboto',
+  'Helvetica',
+  'Arial',
+  'sans-serif',
+  'Apple Color Emoji',
+  'Segoe UI Emoji',
+  'Segoe UI Symbol',
+].map((family) => `'${family}'`).join(', ');
+
 export const THEMES: Record<PrimaryColorScheme, GlobalThemeOverrides> = {
   bluebird: {
     common: {
@@ -125,6 +140,7 @@ export const THEMES: Record<PrimaryColorScheme, GlobalThemeOverrides> = {
       primaryColorHover: '#4db3f0',
       primaryColorPressed: '#1a7fbf',
       primaryColorSuppl: '#d4ecf7',
+      fontFamily: FONT_FAMILY,
     },
   },
   ikizuraibu: {
@@ -133,6 +149,7 @@ export const THEMES: Record<PrimaryColorScheme, GlobalThemeOverrides> = {
       primaryColorHover: '#f08620',
       primaryColorPressed: '#c95a00',
       primaryColorSuppl: '#fbe4d6',
+      fontFamily: FONT_FAMILY,
     },
   },
 };
