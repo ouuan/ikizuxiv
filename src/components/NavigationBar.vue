@@ -51,8 +51,13 @@ const dateShortcuts = computed(() => {
   const firstDate = props.dates[0];
   const lastDate = props.dates[props.dates.length - 1];
   if (!firstDate || !lastDate) return;
+  const today = new Date();
+  const todayMonthDay = toDateString(today).slice(5);
+  const onThisDay = props.dates.find((date) => date.slice(5) === todayMonthDay);
+
   return {
     第一天: new Date(firstDate).valueOf(),
+    ...(onThisDay ? { 那年今日: new Date(onThisDay).valueOf() } : {}),
     最新推文: new Date(lastDate).valueOf(),
   };
 });
