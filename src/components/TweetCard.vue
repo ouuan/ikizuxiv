@@ -3,6 +3,7 @@ import {
   BookmarkOutline,
   ChatbubbleOutline,
   HeartOutline,
+  LanguageOutline,
   PlayOutline,
   PlaySkipForwardOutline,
   RepeatOutline,
@@ -56,6 +57,25 @@ const cardRef = ref<HTMLElement>();
 const audioRef = ref<HTMLAudioElement>();
 const isPlaying = ref(false);
 const showAnnotation = ref<string>();
+const isDisplayModeToggled = ref(false);
+
+const isSingleLanguageMode = computed(
+  () => props.displayMode === 'ja' || props.displayMode === 'zh',
+);
+
+const effectiveDisplayMode = computed(() => {
+  if (!isDisplayModeToggled.value) return props.displayMode;
+  return props.displayMode === 'ja' ? 'zh' : 'ja';
+});
+
+const toggleDisplayModeTooltip = computed(() => {
+  return props.displayMode === 'ja' ? '切换为显示中文' : '切换为显示日语';
+});
+
+const toggleDisplayMode = () => {
+  if (!isSingleLanguageMode.value) return;
+  isDisplayModeToggled.value = !isDisplayModeToggled.value;
+};
 
 const memberName = computed(() => {
   const names = NAMES[props.tweet.screen_name];
@@ -85,16 +105,16 @@ const statusUrl = computed(() => {
   return `https://x.com/${props.tweet.screen_name}/status/${props.tweet.id}`;
 });
 
-const showJapanese = computed(() => props.displayMode !== 'zh');
+const showJapanese = computed(() => effectiveDisplayMode.value !== 'zh');
 
-const showChinese = computed(() => props.displayMode !== 'ja');
+const showChinese = computed(() => effectiveDisplayMode.value !== 'ja');
 
 // Determine flex-direction based on display mode
 const flexDirection = computed(() => {
-  const isHorizontal = props.displayMode === 'zh-ja-horizontal'
-    || props.displayMode === 'ja-zh-horizontal';
-  const chineseFirst = props.displayMode === 'zh-ja'
-    || props.displayMode === 'zh-ja-horizontal';
+  const isHorizontal = effectiveDisplayMode.value === 'zh-ja-horizontal'
+    || effectiveDisplayMode.value === 'ja-zh-horizontal';
+  const chineseFirst = effectiveDisplayMode.value === 'zh-ja'
+    || effectiveDisplayMode.value === 'zh-ja-horizontal';
 
   if (isHorizontal) {
     return chineseFirst ? 'row-reverse' : 'row';
@@ -103,7 +123,8 @@ const flexDirection = computed(() => {
 });
 
 const isHorizontalLayout = computed(() => {
-  return props.displayMode === 'zh-ja-horizontal' || props.displayMode === 'ja-zh-horizontal';
+  return effectiveDisplayMode.value === 'zh-ja-horizontal'
+    || effectiveDisplayMode.value === 'ja-zh-horizontal';
 });
 
 const { themeMode } = useThemeMode();
@@ -181,6 +202,10 @@ const handleAudioEnded = () => {
   }
 };
 
+watch(() => props.displayMode, () => {
+  isDisplayModeToggled.value = false;
+});
+
 // Auto-play when prop changes
 watch(() => props.isAutoPlaying, async (newVal) => {
   if (newVal) {
@@ -237,7 +262,26 @@ const toggleFilterTooltip = computed(
       </div>
 
       <div class="tweet-main">
-        <div class="tweet-header">
+        <div
+          class="tweet-header"
+          :class="{ 'has-display-mode-toggle': isSingleLanguageMode }"
+        >
+          <n-button
+            v-if="isSingleLanguageMode"
+            text
+            circle
+            size="small"
+            class="display-mode-button"
+            :aria-label="toggleDisplayModeTooltip"
+            :title="toggleDisplayModeTooltip"
+            @click="toggleDisplayMode"
+          >
+            <template #icon>
+              <n-icon :size="16">
+                <language-outline />
+              </n-icon>
+            </template>
+          </n-button>
           <n-button
             text
             class="user-link user-name-link"
@@ -594,6 +638,7 @@ const toggleFilterTooltip = computed(
 .tweet-main {
     flex: 1;
     min-width: 0;
+    position: relative;
 }
 
 .tweet-header {
@@ -602,6 +647,29 @@ const toggleFilterTooltip = computed(
     gap: 6px;
     flex-wrap: nowrap;
     margin-bottom: 6px;
+}
+
+.tweet-header.has-display-mode-toggle {
+    padding-right: 36px;
+}
+
+.display-mode-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: rgb(83, 100, 113);
+}
+
+.display-mode-button:hover {
+  color: rgb(15, 20, 25);
+}
+
+.dark .display-mode-button {
+  color: rgb(113, 118, 123);
+}
+
+.dark .display-mode-button:hover {
+  color: rgb(231, 233, 234);
 }
 
 .user-link {
