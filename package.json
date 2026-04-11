@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@plausible-analytics/tracker": "0.4.4",
-    "@unhead/vue": "2.1.4",
+    "@unhead/vue": "2.1.13",
     "@vicons/ionicons5": "0.13.0",
     "@vueuse/core": "14.2.1",
     "naive-ui": "2.43.2",
