@@ -24,7 +24,7 @@
   "devDependencies": {
     "@ouuan/eslint-config-vue": "2.1.2",
     "@ouuan/tsconfig-vue": "1.3.5",
-    "@vitejs/plugin-vue": "6.0.4",
+    "@vitejs/plugin-vue": "6.0.5",
     "eslint": "9.39.3",
     "typescript": "5.9.3",
     "vite": "8.0.5",
