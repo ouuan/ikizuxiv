@@ -28,7 +28,7 @@ import {
 } from '../constants';
 import { trackEvent } from '../track';
 import type { DisplayMode, ExtendedTweet } from '../types';
-import { formatTime, getAudioUrl, toDateString } from '../utils';
+import { formatTime, getAudioUrl } from '../utils';
 import MetricItem from './MetricItem.vue';
 import TranslatorInfo from './TranslatorInfo.vue';
 import TweetText from './TweetText.vue';
@@ -98,7 +98,7 @@ const avatarSrc = useAvatarSrc(props.tweet);
 const statusUrl = computed(() => {
   if (props.isSearch) {
     const params = new URLSearchParams();
-    params.set('date', toDateString(new Date(props.tweet.created_at)));
+    params.set('date', props.tweet.date);
     params.set('filter', props.tweet.screen_name);
     return `#?${params}`;
   }
