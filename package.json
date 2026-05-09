@@ -14,7 +14,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@plausible-analytics/tracker": "0.4.4",
+    "@plausible-analytics/tracker": "0.4.5",
     "@unhead/vue": "2.1.13",
     "@vicons/ionicons5": "0.13.0",
     "@vueuse/core": "14.2.1",
