@@ -17,7 +17,7 @@
     "@plausible-analytics/tracker": "0.4.5",
     "@unhead/vue": "2.1.15",
     "@vicons/ionicons5": "0.13.0",
-    "@vueuse/core": "14.2.1",
+    "@vueuse/core": "14.3.0",
     "naive-ui": "2.44.1",
     "vue": "3.5.34"
   },
