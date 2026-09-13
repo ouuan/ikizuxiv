@@ -7,7 +7,7 @@ jobs:
   meili:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v6.1.0
         with:
           fetch-depth: 0
           submodules: recursive
