@@ -13,7 +13,7 @@ jobs:
           submodules: recursive
       - uses: actions/setup-python@v6.3.0
         with:
-          python-version: '3.14.7'
+          python-version: '3.15.1'
       - run: pip install requests
       - run: python scripts/update_meili.py
         env:
